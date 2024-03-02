@@ -59,7 +59,6 @@ public class ChamberRestController {
     }
     @GetMapping("findChamberByReservationID/{id}")
     Chamber getChamberByReservation(@PathVariable("id") String idReservation){
-        System.out.println("hey");
         return iChamberService.findChamberByResIdReservation(idReservation) ;
     }
 
@@ -99,14 +98,8 @@ public class ChamberRestController {
     public Chamber addImg(@RequestParam("file") MultipartFile file , @PathVariable("idChamber") long idChamber) {
 
         Chamber chamber = chamberRepo.findById(idChamber).get();
-        System.out.println("OK");
 
         try {
-       //     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-         //   Image FileDB = new Image(fileName, file.getContentType(), file.getBytes());
-            //FileDB.setChamber(chamber);
-        //    Image img = imageRepositroy.save(FileDB);
-          //  chamber.setImage(img);
             chamber.setImagebyte(file.getBytes());
             chamberRepo.save(chamber);
         } catch (IOException e) {
@@ -129,8 +122,9 @@ public class ChamberRestController {
         List<Chamber> chambers = iChamberService.getChambersByTypeAndBlocName(type, blocName);
         return ResponseEntity.ok(chambers);
     }
+
     @PostMapping("/affecterBlocAChambre")
-    public ResponseEntity<?> affecterBlocAChambre(@RequestParam long idChamber, @RequestParam long idBloc) {
+    public ResponseEntity<Void> affecterBlocAChambre(@RequestParam long idChamber, @RequestParam long idBloc) {
         iChamberService.affecterBlocAChambre(idChamber, idBloc);
         return ResponseEntity.ok().build();
     }

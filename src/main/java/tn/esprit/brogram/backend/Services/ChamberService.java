@@ -30,7 +30,6 @@ public class ChamberService implements IChamberService{
     @Override
     public Chamber addChamberReservation(long idCh , Reservation r) {
         Chamber ch = chamberRepository.findById(idCh).orElse(Chamber.builder().build());
-        Set<Reservation> reservations = ch.getRes();
         ch.getRes().add(r);
 
         return chamberRepository.save(ch);
@@ -67,7 +66,6 @@ public class ChamberService implements IChamberService{
     public Chamber findById(long id) {
         Chamber c = chamberRepository.findById(id).orElse(Chamber.builder().idChamber(0).numerochamber(0).build());
         if(c.getBloc() == null){
-            System.out.println("this chamber m3andehch blog ");
         }
         return chamberRepository.findById(id).orElse(Chamber.builder().idChamber(0).numerochamber(0).build());
     }
@@ -91,7 +89,6 @@ public class ChamberService implements IChamberService{
     }
     @Override
     public long nbChambreParTypeEtBloc(TypeChamber type, long idBloc) {
-        Bloc b = blocRepository.findById(idBloc).get();
         int c = chamberRepository.countChamberByTypeCAndBloc_IdBloc(type , idBloc);
         return c;
     }
@@ -126,13 +123,11 @@ public class ChamberService implements IChamberService{
             boolean test = false ;
             Set<Reservation> reservations = c.getRes();
             int i = (int) reservations.stream().filter(Reservation::getEstValide).count();
-            if(c.getTypeC().equals(TypeChamber.Simple)&&i==0){
-                test = true ;
-            }else if (c.getTypeC().equals(TypeChamber.Double) && i<=1){
-                test = true ;
-            }else if (c.getTypeC().equals(TypeChamber.Triple) && i<=2){
-                test = true ;
-            }
+            test = switch (c.getTypeC()) {
+                case SIMPLE -> i == 0;
+                case DOUBLE -> i <= 1;
+                case TRIPLE -> i <= 2;
+            };
             if(test){
                 finalChambers.add(c);
             }
