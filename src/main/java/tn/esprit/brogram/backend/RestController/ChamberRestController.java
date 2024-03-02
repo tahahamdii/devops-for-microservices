@@ -1,4 +1,4 @@
-package tn.esprit.brogram.backend.DAO.Repositories.RestController;
+package tn.esprit.brogram.backend.RestController;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
