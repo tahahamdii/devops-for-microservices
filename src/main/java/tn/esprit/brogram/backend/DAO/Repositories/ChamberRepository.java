@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 public interface ChamberRepository extends JpaRepository<Chamber,Long> {
-  //  Chamber findByRes(Set<Reservation> r);
     Chamber findChamberByResIdReservation(String id);
 
   List<Chamber> findByBloc(Bloc b);
