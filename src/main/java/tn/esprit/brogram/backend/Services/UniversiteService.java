@@ -1,14 +1,11 @@
     package tn.esprit.brogram.backend.Services;
-
     import lombok.AllArgsConstructor;
     import lombok.extern.slf4j.Slf4j;
-    import org.springframework.scheduling.annotation.Scheduled;
     import org.springframework.stereotype.Service;
+    import org.webjars.NotFoundException;
     import tn.esprit.brogram.backend.DAO.Entities.*;
     import tn.esprit.brogram.backend.DAO.Repositories.DocumentRepository;
-    import tn.esprit.brogram.backend.DAO.Repositories.FoyerRepository;
     import tn.esprit.brogram.backend.DAO.Repositories.UniversiteRepository;
-
     import java.util.*;
     import java.util.concurrent.TimeUnit;
 
@@ -17,7 +14,6 @@
     @Slf4j
     public class UniversiteService implements IUniversiteService{
         UniversiteRepository universiteRepository ;
-        FoyerRepository foyerRepository ;
         DocumentRepository documentRepository ;
         @Override
         public Universite addUniversite(Universite u) {
@@ -86,18 +82,18 @@
 
         @Override
         public Universite affecterFoyerAUniversite(long idFoyer, String nomUniversite) {
-            Foyer f = foyerRepository.findById(idFoyer).get();
             Universite u = universiteRepository.findUnBynomUniversite(nomUniversite);
             u.setCreatedAt(new Date());
-            u.setFoyer(f);
             universiteRepository.save(u);
             return u;
         }
 
         @Override
         public Universite desaffecterFoyerAUniversite(long idUniversite) {
-            Universite u = universiteRepository.findById(idUniversite).get();
-            u.setFoyer(null);
+            Universite u = universiteRepository.findById(idUniversite)
+                    .orElseThrow(() -> new NotFoundException("Universite with id " + idUniversite + " not found"));
+
+
             universiteRepository.save(u);
             return u;    }
 
