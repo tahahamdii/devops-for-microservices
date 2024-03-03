@@ -1,5 +1,6 @@
 package tn.esprit.brogram.backend;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,7 +42,7 @@ public class BackendApplicationTests {
 
 		// Then
 		assertNotNull(result);
-		assertNotNull(result.getIdUniversite());
+		assertNotEquals(0, result.getIdUniversite());
 		assertNotNull(result.getCreatedAt());
 		assertNotNull(result.getUpdatedAt());
 
