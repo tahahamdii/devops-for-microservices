@@ -1,0 +1,5 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(§—†Ýþÿÿÿÿ
+n	java:S116."TRename this field "CreatedAt" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø—‚Öúÿÿÿÿ
+i	java:S1161"TRename this field "UpdatedAt" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ öÔ
+]	java:S125+"<This block of commented-out lines of code should be removed.(ŽÔ·Ðùÿÿÿÿ8•¥’¦à1

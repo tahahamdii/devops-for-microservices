@@ -1,0 +1,9 @@
+
+g	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¸ğÜà1
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ô²ñÛşÿÿÿÿ
+o	java:S100_"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®”¨“ûÿÿÿÿ8ÍõÚà1
+o	java:S100p"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñë€¿ùÿÿÿÿ8ÙõÚà1
+j	java:S100t"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³Ê–8ßõÚà1
+o	java:S100x"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê”ßáûÿÿÿÿ8íõÚà1
+X	java:S125}"<This block of commented-out lines of code should be removed.(Ê‚‘Ô8§•½©à1
+p	java:S100¡"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚¤Üÿüÿÿÿÿ8å÷Úà1

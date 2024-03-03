@@ -6,7 +6,7 @@
     import org.springframework.stereotype.Service;
     import tn.esprit.brogram.backend.DAO.Entities.*;
     import tn.esprit.brogram.backend.DAO.Repositories.DocumentRepository;
-    import tn.esprit.brogram.backend.DAO.Repositories.FoyerRepository;
+    //import tn.esprit.brogram.backend.DAO.Repositories.FoyerRepository;
     import tn.esprit.brogram.backend.DAO.Repositories.UniversiteRepository;
 
     import java.util.*;
@@ -17,7 +17,7 @@
     @Slf4j
     public class UniversiteService implements IUniversiteService{
         UniversiteRepository universiteRepository ;
-        FoyerRepository foyerRepository ;
+        //FoyerRepository foyerRepository ;
         DocumentRepository documentRepository ;
         @Override
         public Universite addUniversite(Universite u) {
@@ -86,10 +86,10 @@
 
         @Override
         public Universite affecterFoyerAUniversite(long idFoyer, String nomUniversite) {
-            Foyer f = foyerRepository.findById(idFoyer).get();
+           // Foyer f = foyerRepository.findById(idFoyer).get();
             Universite u = universiteRepository.findUnBynomUniversite(nomUniversite);
             u.setCreatedAt(new Date());
-            u.setFoyer(f);
+          //  u.setFoyer(f);
             universiteRepository.save(u);
             return u;
         }
@@ -97,7 +97,7 @@
         @Override
         public Universite desaffecterFoyerAUniversite(long idUniversite) {
             Universite u = universiteRepository.findById(idUniversite).get();
-            u.setFoyer(null);
+           // u.setFoyer(null);
             universiteRepository.save(u);
             return u;    }
 

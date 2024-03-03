@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.brogram.backend.DAO.Entities.*;
 import tn.esprit.brogram.backend.DAO.Repositories.*;
-import tn.esprit.brogram.backend.DAO.Entities.Bloc;
 import tn.esprit.brogram.backend.DAO.Entities.Universite;
 import tn.esprit.brogram.backend.DAO.Repositories.ImageRepositroy;
 import tn.esprit.brogram.backend.DAO.Repositories.UniversiteRepository;
-
-import tn.esprit.brogram.backend.Services.EmailService;
 import tn.esprit.brogram.backend.Services.IUniversiteService;
 
 import java.io.IOException;
@@ -125,37 +122,9 @@ public class UniversiteRestController {
     }
     @SuppressWarnings("FieldMayBeFinal")
     private PasswordEncoder passwordEncoder;
-    UserRepository userRepository ;
-    EmailService emailService ;
-    @PutMapping("updateStatus/{id}")
-    public ResponseEntity<Universite> updateStatus(@PathVariable long id, @RequestParam String status) {
-        try {
-            Universite updatedUniversite = iUniversiteServices.updateStatus(id, status);
-            if(status.equals("Accepté")){
-                User user = new User();
-                user.setNomEt(updatedUniversite.getFirstNameAgent());
-                user.setPrenomEt(updatedUniversite.getLastNameAgent());
-                user.setCin(12345678);
-                user.setEcole(updatedUniversite.getNomUniversite());
+    //UserRepository userRepository ;
+    //EmailService emailService ;
 
-
-                user.setEmail(updatedUniversite.getEmail());
-                user.setPassword(passwordEncoder.encode((updatedUniversite.getEmail())));
-                user.setRole(Roles.AGENTUNIVERSITE);
-                emailService.sendSimpleMail(new EmailDetails(updatedUniversite.getEmail() ,
-                        "YOUR UNIVERSITE IS BEEN ACCEPTED SUCCESSFYLLY TO LOGIN PRESS <a href='localhost:4200/login'>here </a>" , "subject" ,null));
-                userRepository.save(user);
-            }else{
-                emailService.sendSimpleMail(new EmailDetails(updatedUniversite.getEmail() ,
-                        "YOUR UNIVERSITE IS BEEN REFUSSED CHECK YOUR PROVIDED DATA " , "subject" ,null));
-
-            }
-            return new ResponseEntity<>(updatedUniversite, HttpStatus.OK);
-        } catch (Exception ex) {
-            // Handle any exceptions here
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     @GetMapping("/acceptedUniversite")
     public List<Universite> getAcceptedUniversites() {
         return iUniversiteServices.getAcceptedUniversites();

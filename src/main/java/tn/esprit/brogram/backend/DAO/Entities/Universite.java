@@ -1,7 +1,4 @@
 package tn.esprit.brogram.backend.DAO.Entities;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,8 +39,8 @@ public class Universite {
     @Column(name = "description")
     private String description;
 
-    @OneToOne
-    private Foyer foyer ;
+    //@OneToOne
+    //private Foyer foyer ;
 
     @Column(name="CreatedAt")
     private Date CreatedAt;
@@ -52,7 +49,7 @@ public class Universite {
     private Date UpdatedAt;
 
     @Lob
-    @Column(name = "imagebyte", length = 100000)  // Adjust the length as needed
+    @Column(name = "imagebyte", length = 100000)  
     private byte[] imagebyte;
 
 
