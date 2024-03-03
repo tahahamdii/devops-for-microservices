@@ -2,7 +2,6 @@ package tn.esprit.brogram.backend.RestController;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -122,8 +121,6 @@ public class UniversiteRestController {
     }
     @SuppressWarnings("FieldMayBeFinal")
     private PasswordEncoder passwordEncoder;
-    //UserRepository userRepository ;
-    //EmailService emailService ;
 
     @GetMapping("/acceptedUniversite")
     public List<Universite> getAcceptedUniversites() {
