@@ -75,7 +75,7 @@ public class BackendApplicationTests {
 
 	@Test
 	void testFindUniversiteByNomUniversiteAndEmail() {
-		
+
 		String name = "Test Universite";
 		String email = "test@example.com";
 		Universite expected = new Universite();
@@ -135,6 +135,41 @@ public class BackendApplicationTests {
 		assertEquals(expected, result);
 
 		verify(universiteRepository).findByStatuts("En_attente");
+	}
+	@Test
+	void testFindUniversiteByEmail() {
+		// Given
+		String email = "test@example.com";
+		Universite expected = new Universite();
+		// Mocking repository behavior
+		when(universiteRepository.findUniversiteByEmail(email)).thenReturn(expected);
+
+		// When
+		Universite result = universiteService.findUniversiteByEmail(email);
+
+		// Then
+		assertNotNull(result);
+		assertEquals(expected, result);
+
+		// Verify that the repository method is called with the provided parameter
+		verify(universiteRepository).findUniversiteByEmail(email);
+	}
+	@Test
+	void testGetAcceptedUniversites() {
+		// Given
+		List<Universite> expected = new ArrayList<>(); // Add expected universities
+		// Mocking repository behavior
+		when(universiteRepository.findByStatuts("Accepté")).thenReturn(expected);
+
+		// When
+		List<Universite> result = universiteService.getAcceptedUniversites();
+
+		// Then
+		assertNotNull(result);
+		assertEquals(expected, result);
+
+		// Verify that the repository method is called with the provided parameter
+		verify(universiteRepository).findByStatuts("Accepté");
 	}
 
 
