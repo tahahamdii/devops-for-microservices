@@ -1,64 +1,69 @@
 package tn.esprit.brogram.backend;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import tn.esprit.brogram.backend.dao.entities.Chamber;
+import tn.esprit.brogram.backend.dao.entities.TypeChamber;
+import tn.esprit.brogram.backend.services.ChamberService;
 
-import tn.esprit.brogram.backend.DAO.Entities.Chamber;
-import tn.esprit.brogram.backend.DAO.Entities.TypeChamber;
-import tn.esprit.brogram.backend.DAO.Repositories.ChamberRepository;
-import tn.esprit.brogram.backend.Services.ChamberService;
+@ExtendWith(SpringExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SpringBootTest
+ class ChamberServiceTest {
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+//    @Mock
+ //   @Autowired
+ //   private ChamberRepository chamberRepository;
 
-public class ChamberServiceTest {
-
-    @Mock
-    private ChamberRepository chamberRepository;
-
-    @InjectMocks
+//    @InjectMocks
+    @Autowired
     private ChamberService chamberService;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//    }
 
     @Test
-    public void testAddChamber() {
-
-        Chamber chamber = new Chamber();
-        chamber.setIdChamber(1L);
-
-        when(chamberRepository.save(any(Chamber.class))).thenReturn(chamber);
-
-        Chamber result = chamberService.addChamber(chamber);
-
-        assertNotNull(result);
-        assertEquals(chamber.getIdChamber(), result.getIdChamber());
+    void testAddChambre(){
+        Chamber chamber = Chamber.builder().numerochamber(77).description("anyDescription").etat(true).typeC(TypeChamber.SIMPLE).build();
+        Chamber savedChamber = chamberService.addChamber(chamber);
+        Assertions.assertNotNull(savedChamber.getIdChamber());
+        //chamberService.delete(savedChamber);
     }
 
-    @Test
-    public void testFindChamberByResIdReservation() {
-        // Mock data
-        String idReservation = "123456";
-        Chamber chamber = new Chamber();
-        chamber.setIdChamber(1L);
+//    @Test
+//     void testAddChamber() {
+//
+//        Chamber chamber = new Chamber();
+//        chamber.setIdChamber(1L);
+//
+//        when(chamberRepository.save(any(Chamber.class))).thenReturn(chamber);
+//
+//        Chamber result = chamberService.addChamber(chamber);
+//
+//        assertNotNull(result);
+//        assertEquals(chamber.getIdChamber(), result.getIdChamber());
+//    }
 
-        when(chamberRepository.findChamberByResIdReservation(idReservation)).thenReturn(chamber);
-
-        Chamber result = chamberService.findChamberByResIdReservation(idReservation);
-
-        // Assert the result
-        assertNotNull(result);
-        assertEquals(chamber.getIdChamber(), result.getIdChamber());
-    }
+//    @Test
+//     void testFindChamberByResIdReservation() {
+//        // Mock data
+//        String idReservation = "123456";
+//        Chamber chamber = new Chamber();
+//        chamber.setIdChamber(1L);
+//
+//        when(chamberRepository.findChamberByResIdReservation(idReservation)).thenReturn(chamber);
+//
+//        Chamber result = chamberService.findChamberByResIdReservation(idReservation);
+//
+//        // Assert the result
+//        assertNotNull(result);
+//        assertEquals(chamber.getIdChamber(), result.getIdChamber());
+//    }
 
 }

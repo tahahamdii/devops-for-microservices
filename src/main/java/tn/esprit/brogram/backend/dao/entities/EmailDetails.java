@@ -1,4 +1,4 @@
-package tn.esprit.brogram.backend.DAO.Entities;
+package tn.esprit.brogram.backend.dao.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

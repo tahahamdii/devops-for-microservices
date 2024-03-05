@@ -1,7 +1,7 @@
-package tn.esprit.brogram.backend.Services;
+package tn.esprit.brogram.backend.services;
 
-import tn.esprit.brogram.backend.DAO.Entities.Documents;
-import tn.esprit.brogram.backend.DAO.Entities.Universite;
+import tn.esprit.brogram.backend.dao.entities.Documents;
+import tn.esprit.brogram.backend.dao.entities.Universite;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ public interface IUniversiteService {
     Universite addUniversite(Universite u);
     List<Universite> addAllUniversite(List<Universite> ls);
     Universite editUniversite(Universite u);
-    List<Universite> UnifindAll();
-    Universite UnifindById(long id);
-    void UnideleteById(long id);
-    void Unidelete(Universite u);
+    List<Universite> unifindAll();
+    Universite unifindById(long id);
+    void unideleteById(long id);
+    void unidelete(Universite u);
     Universite updateStatus(long id, String status);
     Universite findUniversiteByEmail(String email);
     List<Universite> getAcceptedUniversites();
@@ -26,7 +26,7 @@ public interface IUniversiteService {
 
     Universite findUniversiteByNomUniversiteAndEmail(String name, String email);
 
-    Universite UnifindByNomUniv(String nomUniversite);
+    Universite unifindByNomUniv(String nomUniversite);
 
     List<Documents> downloadDocs(long idUniversite);
 

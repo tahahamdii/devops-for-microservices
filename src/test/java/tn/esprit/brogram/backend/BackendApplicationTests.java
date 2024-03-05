@@ -9,17 +9,17 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import tn.esprit.brogram.backend.DAO.Entities.Documents;
-import tn.esprit.brogram.backend.DAO.Entities.Universite;
-import tn.esprit.brogram.backend.DAO.Repositories.DocumentRepository;
-import tn.esprit.brogram.backend.DAO.Repositories.UniversiteRepository;
-import tn.esprit.brogram.backend.Services.UniversiteService;
+import tn.esprit.brogram.backend.dao.entities.Documents;
+import tn.esprit.brogram.backend.dao.entities.Universite;
+import tn.esprit.brogram.backend.dao.repositories.DocumentRepository;
+import tn.esprit.brogram.backend.dao.repositories.UniversiteRepository;
+import tn.esprit.brogram.backend.services.UniversiteService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-public class BackendApplicationTests {
+ class BackendApplicationTests {
 
 	@Autowired
 	private UniversiteService universiteService;
@@ -36,7 +36,7 @@ public class BackendApplicationTests {
 
 
 	@Test
-	public void testAddAllUniversite() {
+	 void testAddAllUniversite() {
 		List<Universite> universiteList = new ArrayList<>();
 		Universite u1 = new Universite();
 		Universite u2 = new Universite();
@@ -55,7 +55,7 @@ public class BackendApplicationTests {
 	}
 
 	@Test
-	public void testEditUniversite() {
+	 void testEditUniversite() {
 		Universite u = new Universite();
 
 		List<Documents> documentList = new ArrayList<>();
@@ -100,7 +100,7 @@ public class BackendApplicationTests {
 
 		when(universiteRepository.findUnBynomUniversite(nomUniversite)).thenReturn(expected);
 
-		Universite result = universiteService.UnifindByNomUniv(nomUniversite);
+		Universite result = universiteService.unifindByNomUniv(nomUniversite);
 
 		assertNotNull(result);
 		assertEquals(expected, result);
