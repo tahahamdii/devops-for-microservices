@@ -1,4 +1,4 @@
-package restcontroller;
+package tn.esprit.brogram.backend.restcontroller;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
