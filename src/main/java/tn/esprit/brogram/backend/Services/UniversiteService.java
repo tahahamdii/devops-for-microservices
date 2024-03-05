@@ -1,11 +1,11 @@
-    package tn.esprit.brogram.backend.Services;
+    package tn.esprit.brogram.backend.services;
     import lombok.AllArgsConstructor;
     import lombok.extern.slf4j.Slf4j;
     import org.springframework.stereotype.Service;
     import org.webjars.NotFoundException;
-    import tn.esprit.brogram.backend.DAO.Entities.*;
-    import tn.esprit.brogram.backend.DAO.Repositories.DocumentRepository;
-    import tn.esprit.brogram.backend.DAO.Repositories.UniversiteRepository;
+    import tn.esprit.brogram.backend.dao.entities.*;
+    import tn.esprit.brogram.backend.dao.repositories.DocumentRepository;
+    import tn.esprit.brogram.backend.dao.repositories.UniversiteRepository;
     import java.util.*;
     import java.util.concurrent.TimeUnit;
 
@@ -41,22 +41,22 @@
         }
 
         @Override
-        public List<Universite> UnifindAll() {
+        public List<Universite> unifindAll() {
             return universiteRepository.findAll();
         }
 
         @Override
-        public Universite UnifindById(long id) {
+        public Universite unifindById(long id) {
             return universiteRepository.findById(id).orElse(Universite.builder().build());
         }
 
         @Override
-        public void UnideleteById(long id) {
+        public void unideleteById(long id) {
             universiteRepository.deleteById(id);
         }
 
         @Override
-        public void Unidelete(Universite u) {
+        public void unidelete(Universite u) {
             universiteRepository.delete(u);
         }
 
@@ -106,7 +106,7 @@
 
 
         @Override
-        public Universite UnifindByNomUniv(String nomUniversite) {
+        public Universite unifindByNomUniv(String nomUniversite) {
             Universite universite = universiteRepository.findUnBynomUniversite(nomUniversite);
             return universite != null ? universite : Universite.builder().build();    }
 

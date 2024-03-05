@@ -1,4 +1,4 @@
-package tn.esprit.brogram.backend.DAO.Entities;
+package tn.esprit.brogram.backend.dao.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -40,12 +40,11 @@ public class Universite {
     private String description;
 
 
-
     @Column(name="CreatedAt")
-    private Date CreatedAt;
+    private Date createdAt;
 
     @Column(name="UpdatedAt")
-    private Date UpdatedAt;
+    private Date updatedAt;
 
     @Lob
     @Column(name = "imagebyte", length = 100000)  

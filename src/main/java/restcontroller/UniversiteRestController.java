@@ -1,4 +1,4 @@
-package tn.esprit.brogram.backend.RestController;
+package restcontroller;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tn.esprit.brogram.backend.DAO.Entities.*;
-import tn.esprit.brogram.backend.DAO.Repositories.*;
-import tn.esprit.brogram.backend.DAO.Entities.Universite;
-import tn.esprit.brogram.backend.DAO.Repositories.ImageRepositroy;
-import tn.esprit.brogram.backend.DAO.Repositories.UniversiteRepository;
-import tn.esprit.brogram.backend.Services.IUniversiteService;
+import tn.esprit.brogram.backend.dao.entities.*;
+import tn.esprit.brogram.backend.dao.repositories.*;
+import tn.esprit.brogram.backend.dao.entities.Universite;
+import tn.esprit.brogram.backend.dao.repositories.ImageRepositroy;
+import tn.esprit.brogram.backend.dao.repositories.UniversiteRepository;
+import tn.esprit.brogram.backend.services.IUniversiteService;
 
 import java.io.IOException;
 import java.util.*;
@@ -77,7 +77,7 @@ public class UniversiteRestController {
     }
     @GetMapping("/download/{idUniversite}")
     public List<Documents> downloadDocuments(@PathVariable long idUniversite) {
-        Universite universite = iUniversiteServices.UnifindById(idUniversite);
+        Universite universite = iUniversiteServices.unifindById(idUniversite);
         if (universite != null) {
             return documentRepository.findByUniversiteIdUniversite(idUniversite);
         } else {
@@ -91,9 +91,9 @@ public class UniversiteRestController {
         return iUniversiteServices.findUniversiteByEmail(email);
     }
     @GetMapping("findAll")
-    List<Universite> UnifindAll(){
+    List<Universite> unifindAll(){
 
-        return iUniversiteServices.UnifindAll();
+        return iUniversiteServices.unifindAll();
 
     }
 
@@ -108,16 +108,16 @@ public class UniversiteRestController {
     }
 
     @GetMapping("findById/{id}")
-    Universite UnifindById(@PathVariable("id") long id){
-        return iUniversiteServices.UnifindById(id);
+    Universite unifindById(@PathVariable("id") long id){
+        return iUniversiteServices.unifindById(id);
     }
     @DeleteMapping("deleteById/{id}")
-    void UnideleteById(@PathVariable("id") long id){
-        iUniversiteServices.UnideleteById(id);
+    void unideleteById(@PathVariable("id") long id){
+        iUniversiteServices.unideleteById(id);
     }
     @DeleteMapping("delete")
-    void Unidelete(@RequestBody Universite u){
-        iUniversiteServices.Unidelete(u);
+    void unidelete(@RequestBody Universite u){
+        iUniversiteServices.unidelete(u);
     }
     @SuppressWarnings("FieldMayBeFinal")
     private PasswordEncoder passwordEncoder;
@@ -155,13 +155,13 @@ public class UniversiteRestController {
     }
 
     @GetMapping("findByUniversiteNom/{name}")
-    Universite UnifindByUniversiteNom(@PathVariable("name") String nomUniversite){
-        return iUniversiteServices.UnifindByNomUniv(nomUniversite);
+    Universite unifindByUniversiteNom(@PathVariable("name") String nomUniversite){
+        return iUniversiteServices.unifindByNomUniv(nomUniversite);
     }
 
     @GetMapping("checkUniversityNameUnique/{name}")
     public boolean checkUniversityNameUnique(@PathVariable String name) {
-        Universite existingUniversite = iUniversiteServices.UnifindByNomUniv(name);
+        Universite existingUniversite = iUniversiteServices.unifindByNomUniv(name);
         return existingUniversite == null;
     }
 

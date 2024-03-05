@@ -1,7 +1,7 @@
-package tn.esprit.brogram.backend.DAO.Repositories;
+package tn.esprit.brogram.backend.dao.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import tn.esprit.brogram.backend.DAO.Entities.Documents;
+import tn.esprit.brogram.backend.dao.entities.Documents;
 
 import java.util.List;
 
