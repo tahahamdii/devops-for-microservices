@@ -1,4 +1,4 @@
-package restcontroller;
+package tn.esprit.brogram.backend.restcontroller;
 
 import org.springframework.web.bind.annotation.RestController;
 
