@@ -1,14 +1,14 @@
 package tn.esprit.brogram.backend.services;
 
 import tn.esprit.brogram.backend.dao.entities.Chamber;
-//import tn.esprit.brogram.backend.DAO.Entities.Reservation;
+import tn.esprit.brogram.backend.dao.entities.Reservation;
 import tn.esprit.brogram.backend.dao.entities.TypeChamber;
 
 import java.util.List;
 
 public interface IChamberService {
     Chamber addChamber(Chamber c);
-    //Chamber addChamberReservation(long idChamber , Reservation r);
+    Chamber addChamberReservation(long idChamber , Reservation r);
     Chamber findChamberByResIdReservation(String idReservation);
     List<Chamber> addAllChambers(List<Chamber> ls);
     Chamber editChamber(Chamber c);

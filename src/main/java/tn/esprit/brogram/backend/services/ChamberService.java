@@ -5,13 +5,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.brogram.backend.dao.entities.Bloc;
 import tn.esprit.brogram.backend.dao.entities.Chamber;
-//import tn.esprit.brogram.backend.DAO.Entities.Reservation;
+import tn.esprit.brogram.backend.dao.entities.Reservation;
 import tn.esprit.brogram.backend.dao.entities.TypeChamber;
 
 import tn.esprit.brogram.backend.dao.repositories.BlocRepository;
 
 import tn.esprit.brogram.backend.dao.repositories.ChamberRepository;
-//import tn.esprit.brogram.backend.DAO.Repositories.ReservationRepository;
+import tn.esprit.brogram.backend.dao.repositories.ReservationRepository;
 
 import java.util.*;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class ChamberService implements IChamberService{
     ChamberRepository chamberRepository;
-    //ReservationRepository reservationRepository ;
+    ReservationRepository reservationRepository ;
     BlocRepository blocRepository;
     @Override
     public Chamber addChamber(Chamber c) {
@@ -42,7 +42,7 @@ public class ChamberService implements IChamberService{
 
     @Override
     public Chamber editChamber(Chamber c) {
-        Chamber chamber = chamberRepository.findById(c.getIdChamber()).get();
+        Chamber chamber = chamberRepository.findByIdChamber(c.getIdChamber());
         Bloc b = chamber.getBloc();
         c.setBloc(b);
 
@@ -97,8 +97,6 @@ public class ChamberService implements IChamberService{
         return chamberRepository.findByTypeCAndBlocNomBloc(type, blocName);
     }
 
-
-
     @Override
     public List<Chamber> findChamberByBlocFoyerUniversiteNomUniversite(String nomUniversite) {
 
@@ -132,6 +130,13 @@ public class ChamberService implements IChamberService{
         }
 
         return finalChambers;
+    }
+
+    @Override
+    public Chamber addChamberReservation(long idCh , Reservation r) {
+        Chamber ch = chamberRepository.findById(idCh).orElse(Chamber.builder().build());
+        ch.getRes().add(r);
+        return chamberRepository.save(ch);
     }
 
 

@@ -15,18 +15,8 @@ import tn.esprit.brogram.backend.services.ChamberService;
 @SpringBootTest
  class ChamberServiceTest {
 
-//    @Mock
- //   @Autowired
- //   private ChamberRepository chamberRepository;
-
-//    @InjectMocks
     @Autowired
     private ChamberService chamberService;
-
-//    @BeforeEach
-//    public void setUp() {
-//        MockitoAnnotations.openMocks(this);
-//    }
 
     @Test
     void testAddChambre(){
@@ -36,34 +26,6 @@ import tn.esprit.brogram.backend.services.ChamberService;
         //chamberService.delete(savedChamber);
     }
 
-//    @Test
-//     void testAddChamber() {
-//
-//        Chamber chamber = new Chamber();
-//        chamber.setIdChamber(1L);
-//
-//        when(chamberRepository.save(any(Chamber.class))).thenReturn(chamber);
-//
-//        Chamber result = chamberService.addChamber(chamber);
-//
-//        assertNotNull(result);
-//        assertEquals(chamber.getIdChamber(), result.getIdChamber());
-//    }
 
-//    @Test
-//     void testFindChamberByResIdReservation() {
-//        // Mock data
-//        String idReservation = "123456";
-//        Chamber chamber = new Chamber();
-//        chamber.setIdChamber(1L);
-//
-//        when(chamberRepository.findChamberByResIdReservation(idReservation)).thenReturn(chamber);
-//
-//        Chamber result = chamberService.findChamberByResIdReservation(idReservation);
-//
-//        // Assert the result
-//        assertNotNull(result);
-//        assertEquals(chamber.getIdChamber(), result.getIdChamber());
-//    }
 
 }

@@ -1,5 +1,6 @@
 package tn.esprit.brogram.backend.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,9 +29,9 @@ public class Bloc {
     @Column(name="capaciteBloc")
     private int capaciteBloc ;
 
-    //@JsonIgnore
-    //@ManyToOne
-    //Foyer foyer ;
+    @JsonIgnore
+    @ManyToOne
+    Foyer foyer ;
 
     @OneToMany(mappedBy = "bloc" , cascade = CascadeType.ALL)
 

@@ -10,6 +10,8 @@ import java.util.List;
 public interface ChamberRepository extends JpaRepository<Chamber,Long> {
   Chamber findChamberByResIdReservation(String id);
 
+  Chamber findByIdChamber(Long id);
+
   List<Chamber> findByBloc(Bloc b);
 
   int countChamberByTypeCAndBloc_IdBloc(TypeChamber typeChamber , long idBloc);
