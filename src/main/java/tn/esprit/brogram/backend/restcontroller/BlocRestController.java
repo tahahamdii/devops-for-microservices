@@ -32,7 +32,7 @@ public class BlocRestController {
     IBlocService iBlocService ;
     UniversiteRepository universiteRepository ;
     @GetMapping("findAll")
-    List<Bloc> findAll(){
+    public List<Bloc> findAll(){
         return iBlocService.findAll();
     }
 
@@ -41,12 +41,12 @@ public class BlocRestController {
 
 
     @GetMapping("findBLocByFoyer/{id}")
-    List<Bloc> findBlocByFoyer(@PathVariable("id") long id) {
+    public List<Bloc> findBlocByFoyer(@PathVariable("id") long id) {
         return iBlocService.findBlocByFoyerIdFoyer(id);
     }
 
     @GetMapping("findAllByuniversite/{name}")
-    List<Bloc> findAllByuniversite(@PathVariable("name") String name){
+    public List<Bloc> findAllByuniversite(@PathVariable("name") String name){
         Universite u = universiteRepository.findUnBynomUniversite(name) ;
         if(u.getFoyer() != null ){
             Foyer f=u.getFoyer();
@@ -58,7 +58,7 @@ public class BlocRestController {
     }
 
     @PostMapping("addBloc/{name}")
-    Bloc addBloc(@RequestBody Bloc b , @PathVariable("name") String name){
+    public Bloc addBloc(@RequestBody Bloc b , @PathVariable("name") String name){
         Universite u = universiteRepository.findUnBynomUniversite(name) ;
         Foyer f = u.getFoyer() ;
         if(b.getChambers() != null){
@@ -75,27 +75,27 @@ public class BlocRestController {
     }
 
     @PostMapping("addAllBlocs")
-    List<Bloc> addAllBlocs(@RequestBody List<Bloc> b){
+    public List<Bloc> addAllBlocs(@RequestBody List<Bloc> b){
         return iBlocService.addAllBlocs(b);
     }
 
     @PutMapping("editBloc")
-    Bloc editBloc(@RequestBody Bloc b){
+    public Bloc editBloc(@RequestBody Bloc b){
         return iBlocService.editBloc(b);
     }
 
     @GetMapping("findById/{id}")
-    Bloc findById(@PathVariable("id") long id){
+    public Bloc findById(@PathVariable("id") long id){
         return iBlocService.findById(id);
     }
 
     @DeleteMapping("deleteByID/{id}")
-    void deleteByID(@PathVariable("id") long id){
+    public void deleteByID(@PathVariable("id") long id){
         iBlocService.deleteByID(id);
     }
 
     @DeleteMapping("delete")
-    void delete(@RequestBody Bloc b){
+    public void delete(@RequestBody Bloc b){
         iBlocService.delete(b);
     }
 
@@ -109,7 +109,7 @@ public class BlocRestController {
     }
     //ByWiWi
     @GetMapping("findBLocByChamber/{id}")
-    Bloc findBlocByChamber(@PathVariable("id") long id){
+    public Bloc findBlocByChamber(@PathVariable("id") long id){
         return iBlocService.findBlocByChamberIdChamber(id);
 
     }
@@ -124,7 +124,7 @@ public class BlocRestController {
 
 
     @GetMapping("calculateAverageCapacity")
-    Map<Long,Double> calculateAverageCapacity(){
+    public Map<Long,Double> calculateAverageCapacity(){
         List<Bloc> allbloc=iBlocService.findAll();
         return allbloc.stream().collect(Collectors.toMap(
                 Bloc::getIdBloc,
@@ -132,7 +132,7 @@ public class BlocRestController {
         ));
     }
     @GetMapping("countChambersByType/{blocId}")
-    List<Object[]> countChambersByType(@PathVariable("blocId") long blocId) {
+    public List<Object[]> countChambersByType(@PathVariable("blocId") long blocId) {
         return iBlocService.countChambersByType(blocId);
     }
 }
