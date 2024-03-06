@@ -37,50 +37,50 @@ public class FoyerRestController {
     private UniversiteRepository universiteRepository;
 
     @GetMapping("findAllFoyer")
-    List<Foyer> findAll() {
+    public List<Foyer> findAll() {
         return iFoyerService.findAllFoyer();
     }
 
     @GetMapping("findFoyerByUnversiteName/{nom}")
-    List<Foyer> findFoyerByUniversiteNomUniversite(@PathVariable("nom") String nom) {
+    public List<Foyer> findFoyerByUniversiteNomUniversite(@PathVariable("nom") String nom) {
         return iFoyerService.findFoyerByUniversersite(nom);
     }
 
     @GetMapping("findByIdFoyer/{id}")
-    Foyer findbyIdFoyer(@PathVariable("id") long id) {
+    public Foyer findbyIdFoyer(@PathVariable("id") long id) {
         return iFoyerService.findByIDFoyer(id);
     }
 
 
     @PostMapping("AddFoyer/{name}")
-    Foyer addFoyer(@RequestBody Foyer f, @PathVariable("name") String name) {
+    public Foyer addFoyer(@RequestBody Foyer f, @PathVariable("name") String name) {
 
         return iFoyerService.addFoyer(f, name);
     }
 
     @PostMapping("AddAllFoyer")
-    List<Foyer> addAllFoyer(@RequestBody List<Foyer> ls) {
+    public List<Foyer> addAllFoyer(@RequestBody List<Foyer> ls) {
         return iFoyerService.addAllFoyer(ls);
     }
 
     @PutMapping("UpdateFoyer")
-    Foyer updateFoyer(@RequestBody Foyer f) {
+    public Foyer updateFoyer(@RequestBody Foyer f) {
         f.setUpdatedAt(new Date());
         return iFoyerService.editFoyer(f);
     }
 
     @DeleteMapping("DeleteFoyerByID/{id}")
-    void deleteFoyerByID(@PathVariable("id") long id) {
+    public void deleteFoyerByID(@PathVariable("id") long id) {
         iFoyerService.deleteByIDFoyer(id);
     }
 
     @DeleteMapping("DeleteFoyer")
-    void deleteFoyer(@RequestBody Foyer f) {
+    public void deleteFoyer(@RequestBody Foyer f) {
         iFoyerService.deleteFoyer(f);
     }
 
     @GetMapping("findFoyerByUniversite/{id}")
-    List<Foyer> findFoyerByUniversite(@PathVariable("id") long idUniversite) {
+    public List<Foyer> findFoyerByUniversite(@PathVariable("id") long idUniversite) {
         return foyerRepository.findFoyerByUniversite_IdUniversite(idUniversite);
     }
 
