@@ -26,7 +26,7 @@ public class BlocService implements IBlocService{
 
     @Override
     public Bloc editBloc(Bloc b) {
-        Bloc bloc = blocRepository.findById(b.getIdBloc()).get();
+        Bloc bloc = blocRepository.findByIdBloc(b.getIdBloc());
         b.setFoyer(bloc.getFoyer());
         return blocRepository.save(b);
     }
@@ -53,16 +53,14 @@ public class BlocService implements IBlocService{
         blocRepository.delete(b);
     }
 
-    //ByWiWi
     @Override
     public String getBlocNameById(long idBloc) {
         Optional<Bloc> blocOptional = blocRepository.findById(idBloc);
         return blocOptional.map(Bloc::getNomBloc).orElse(null);
     }
-    //ByWiWi
 
     @Override
-    public Bloc findBlocByChamber_IdChamber(long idChamber) {
+    public Bloc findBlocByChamberIdChamber(long idChamber) {
         return blocRepository.findBlocByChambers_IdChamber(idChamber);
     }
 
@@ -74,7 +72,7 @@ public class BlocService implements IBlocService{
 
 
     @Override
-    public List<Bloc> findBlocByFoyer_IdFoyer(long idFoyer) {
+    public List<Bloc> findBlocByFoyerIdFoyer(long idFoyer) {
         return blocRepository.findBlocByFoyer_IdFoyer(idFoyer);
     }
 
@@ -97,11 +95,11 @@ public class BlocService implements IBlocService{
 
     private int getChamberCapacity(Chamber chamber){
         switch (chamber.getTypeC()){
-            case Simple:
+            case SIMPLE:
                 return 1;
-            case Double:
+            case DOUBLE:
                 return 2;
-            case Triple:
+            case TRIPLE:
                 return 3;
             default:
                 return 0;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -42,7 +44,7 @@ public class Chamber {
     @ManyToOne
     Bloc bloc ;
 
-    //@OneToMany(cascade =  CascadeType.ALL)
-    //private  Set<Reservation> res  = new HashSet<>();
+    @OneToMany(cascade =  CascadeType.ALL)
+    private Set<Reservation> res  = new HashSet<>();
 
 }

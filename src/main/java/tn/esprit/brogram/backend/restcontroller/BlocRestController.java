@@ -1,4 +1,4 @@
-package restcontroller;
+package tn.esprit.brogram.backend.restcontroller;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class BlocRestController {
 
     @GetMapping("findBLocByFoyer/{id}")
     List<Bloc> findBlocByFoyer(@PathVariable("id") long id) {
-        return iBlocService.findBlocByFoyer_IdFoyer(id);
+        return iBlocService.findBlocByFoyerIdFoyer(id);
     }
 
     @GetMapping("findAllByuniversite/{name}")
@@ -59,7 +59,6 @@ public class BlocRestController {
 
     @PostMapping("addBloc/{name}")
     Bloc addBloc(@RequestBody Bloc b , @PathVariable("name") String name){
-        //add
         Universite u = universiteRepository.findUnBynomUniversite(name) ;
         Foyer f = u.getFoyer() ;
         if(b.getChambers() != null){
@@ -111,7 +110,7 @@ public class BlocRestController {
     //ByWiWi
     @GetMapping("findBLocByChamber/{id}")
     Bloc findBlocByChamber(@PathVariable("id") long id){
-        return iBlocService.findBlocByChamber_IdChamber(id);
+        return iBlocService.findBlocByChamberIdChamber(id);
     }
 
     //by wiwi

@@ -8,15 +8,11 @@ import java.util.List;
 
 public interface BlocRepository extends JpaRepository<Bloc,Long> {
 
-    //ByWiWi
+    Bloc findByIdBloc(Long b);
     Bloc getBlocByNomBloc(String nomBlog);
-    //ByWiWi
     Bloc findBlocByChambers_IdChamber(long idChamber);
-    //by wiwi
     boolean existsByNomBloc(String nomBloc);
-
     List<Bloc> findBlocByFoyer_IdFoyer(long idFoyer);
-
     @Query("SELECT c.typeC, COUNT(c) FROM Bloc b JOIN b.chambers c WHERE b.idBloc = :blocId GROUP BY c.typeC")
     List<Object[]> countChambersByType(long blocId);
 

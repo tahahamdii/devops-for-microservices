@@ -1,4 +1,4 @@
-package restcontroller;
+package tn.esprit.brogram.backend.restcontroller;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.brogram.backend.dao.entities.*;
+import tn.esprit.brogram.backend.dao.errors.CustomException;
 import tn.esprit.brogram.backend.dao.repositories.*;
 import tn.esprit.brogram.backend.dao.entities.Universite;
 import tn.esprit.brogram.backend.dao.repositories.ImageRepositroy;
@@ -71,7 +72,7 @@ public class UniversiteRestController {
             universite.setImagebyte(file.getBytes());
             universiteRepository.save(universite);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomException(e.getMessage());
         }
         return universite;
     }

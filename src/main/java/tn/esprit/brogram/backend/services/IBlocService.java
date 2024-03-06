@@ -12,11 +12,8 @@ public interface IBlocService {
     Bloc findById(long id);
     void deleteByID(long id);
     void delete(Bloc b) ;
-    //ByWiWi
     String getBlocNameById(long idBloc);
-    //ByWiWi
     Bloc findBlocByChamberIdChamber(long idChamber);
-    //by wiwi
     boolean doesBlocExist(String nomBloc);
     List<Bloc> findBlocByFoyerIdFoyer(long idFoyer);
     double calculateAverageCapacity(long blocId);

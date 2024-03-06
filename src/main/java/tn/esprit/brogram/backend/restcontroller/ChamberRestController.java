@@ -1,12 +1,13 @@
-package restcontroller;
+package tn.esprit.brogram.backend.restcontroller;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.brogram.backend.dao.entities.Chamber;
-//import tn.esprit.brogram.backend.DAO.Entities.Reservation;
+import tn.esprit.brogram.backend.dao.entities.Reservation;
 import tn.esprit.brogram.backend.dao.entities.TypeChamber;
+import tn.esprit.brogram.backend.dao.errors.CustomException;
 import tn.esprit.brogram.backend.dao.repositories.ChamberRepository;
 import tn.esprit.brogram.backend.dao.repositories.ImageRepository;
 import tn.esprit.brogram.backend.services.IChamberService;
@@ -51,10 +52,10 @@ public class ChamberRestController {
         return iChamberService.addChamber(c);
 
     }
-//    @PutMapping("putChamberReservation/{id}")
-//    Chamber putChamberReservation(@PathVariable("id") long idCh , @RequestBody Reservation r){
-//        return iChamberService.addChamberReservation(idCh , r);
-//    }
+    @PutMapping("putChamberReservation/{id}")
+    Chamber putChamberReservation(@PathVariable("id") long idCh , @RequestBody Reservation r){
+        return iChamberService.addChamberReservation(idCh , r);
+    }
     @GetMapping("findChamberByReservationID/{id}")
     Chamber getChamberByReservation(@PathVariable("id") String idReservation){
         return iChamberService.findChamberByResIdReservation(idReservation) ;
@@ -95,13 +96,13 @@ public class ChamberRestController {
     @PostMapping("uploadImg/{idChamber}")
     public Chamber addImg(@RequestParam("file") MultipartFile file , @PathVariable("idChamber") long idChamber) {
 
-        Chamber chamber = chamberRepo.findById(idChamber).get();
+        Chamber chamber = chamberRepo.findByIdChamber(idChamber);
 
         try {
             chamber.setImagebyte(file.getBytes());
             chamberRepo.save(chamber);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomException(e.getMessage());
         }
         return chamber;
     }

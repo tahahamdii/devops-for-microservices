@@ -39,6 +39,8 @@ public class Universite {
     @Column(name = "description")
     private String description;
 
+    @OneToOne
+    private Foyer foyer ;
 
     @Column(name="CreatedAt")
     private Date createdAt;
