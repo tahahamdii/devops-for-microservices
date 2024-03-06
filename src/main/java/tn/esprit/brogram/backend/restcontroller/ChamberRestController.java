@@ -52,10 +52,12 @@ public class ChamberRestController {
         return iChamberService.addChamber(c);
 
     }
+
     @PutMapping("putChamberReservation/{id}")
     Chamber putChamberReservation(@PathVariable("id") long idCh , @RequestBody Reservation r){
         return iChamberService.addChamberReservation(idCh , r);
     }
+
     @GetMapping("findChamberByReservationID/{id}")
     Chamber getChamberByReservation(@PathVariable("id") String idReservation){
         return iChamberService.findChamberByResIdReservation(idReservation) ;
@@ -98,10 +100,12 @@ public class ChamberRestController {
 
         Chamber chamber = chamberRepo.findByIdChamber(idChamber);
 
+
         try {
             chamber.setImagebyte(file.getBytes());
             chamberRepo.save(chamber);
         } catch (IOException e) {
+
             throw new CustomException(e.getMessage());
         }
         return chamber;

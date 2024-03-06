@@ -111,6 +111,7 @@ public class BlocRestController {
     @GetMapping("findBLocByChamber/{id}")
     Bloc findBlocByChamber(@PathVariable("id") long id){
         return iBlocService.findBlocByChamberIdChamber(id);
+
     }
 
     //by wiwi
