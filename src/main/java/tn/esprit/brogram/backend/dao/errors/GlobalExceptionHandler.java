@@ -71,7 +71,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorObject, HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @ExceptionHandler(PasswordDoesNotMatchTheOld.class)
+    @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorObject> handleCustomException(CustomException ex, WebRequest request) {
 
         ErrorObject errorObject = new ErrorObject();
