@@ -151,4 +151,18 @@ public class UniversiteServiceTest {
         Assertions.assertNotNull(updatedUniversite);
         Assertions.assertEquals(universite.getNomUniversite(), updatedUniversite.getNomUniversite());
     }
+
+    @Test
+    void testUnifindById() {
+        Universite universite = Universite.builder().nomUniversite("Universite 1").build();
+        universiteRepository.save(universite);
+
+        Universite foundUniversite = universiteService.unifindById(universite.getIdUniversite());
+
+        Assertions.assertNotNull(foundUniversite);
+        Assertions.assertEquals(universite.getIdUniversite(), foundUniversite.getIdUniversite());
+
+        Assertions.assertEquals(universite.getNomUniversite(), foundUniversite.getNomUniversite());
+    }
+
 }
