@@ -8,13 +8,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import tn.esprit.brogram.backend.dao.entities.Chamber;
-import tn.esprit.brogram.backend.dao.entities.Foyer;
-import tn.esprit.brogram.backend.dao.entities.TypeChamber;
-import tn.esprit.brogram.backend.dao.entities.Universite;
+import tn.esprit.brogram.backend.dao.entities.*;
 import tn.esprit.brogram.backend.dao.repositories.FoyerRepository;
 import tn.esprit.brogram.backend.services.ChamberService;
 import tn.esprit.brogram.backend.services.UniversiteService;
+
+import java.util.Date;
 
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -90,6 +89,28 @@ public class UniversiteServiceTest {
         Assertions.assertNotNull(updatedUniversite.getIdUniversite());
         Assertions.assertNotNull(updatedUniversite.getFoyer());
         Assertions.assertEquals("Foyer Name", updatedUniversite.getFoyer().getNomFoyer());
+
+    }
+
+    @Test
+    void testAddUniversiteCreatedAt() {
+        Universite universite = Universite.builder().nomUniversite("NomUni").build();
+        universite.setCreatedAt(new Date());
+
+        Universite savedUniversite = universiteService.addUniversite(universite);
+        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getCreatedAt());
+
+    }
+
+    @Test
+    void testAddUniversiteUpdatedAt() {
+        Universite universite = Universite.builder().nomUniversite("NomUni").build();
+        universite.setUpdatedAt(new Date());
+
+        Universite savedUniversite = universiteService.addUniversite(universite);
+        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getUpdatedAt());
 
     }
 }
