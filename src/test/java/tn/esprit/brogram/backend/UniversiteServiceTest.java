@@ -13,7 +13,9 @@ import tn.esprit.brogram.backend.dao.repositories.FoyerRepository;
 import tn.esprit.brogram.backend.services.ChamberService;
 import tn.esprit.brogram.backend.services.UniversiteService;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -112,5 +114,24 @@ public class UniversiteServiceTest {
         Assertions.assertNotNull(savedUniversite.getIdUniversite());
         Assertions.assertNotNull(savedUniversite.getUpdatedAt());
 
+    }
+
+    @Test
+    void testAddAllUniversite() {
+        List<Universite> universites = new ArrayList<>();
+
+        Universite universite1 = Universite.builder().nomUniversite("Universite 1").build();
+        Universite universite2 = Universite.builder().nomUniversite("Universite 2").build();
+        universites.add(universite1);
+        universites.add(universite2);
+
+        List<Universite> savedUniversites = universiteService.addAllUniversite(universites);
+
+        Assertions.assertNotNull(savedUniversites);
+        Assertions.assertEquals(universites.size(), savedUniversites.size());
+
+        for (Universite savedUniversite : savedUniversites) {
+            Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        }
     }
 }
