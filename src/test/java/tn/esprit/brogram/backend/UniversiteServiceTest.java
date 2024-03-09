@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.brogram.backend.dao.entities.Chamber;
+import tn.esprit.brogram.backend.dao.entities.Foyer;
 import tn.esprit.brogram.backend.dao.entities.TypeChamber;
 import tn.esprit.brogram.backend.dao.entities.Universite;
+import tn.esprit.brogram.backend.dao.repositories.FoyerRepository;
 import tn.esprit.brogram.backend.services.ChamberService;
 import tn.esprit.brogram.backend.services.UniversiteService;
 
@@ -21,7 +23,8 @@ public class UniversiteServiceTest {
 
     @Autowired
     private UniversiteService universiteService;
-
+    @Autowired
+    private FoyerRepository foyerRepository;
     @Test
     void testAddUniversiteNom(){
         Universite universite  = Universite.builder().nomUniversite("NomUni").build();
@@ -69,6 +72,24 @@ public class UniversiteServiceTest {
         Universite universite  = Universite.builder().lastNameAgent("Agent last Name").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
         Assertions.assertNotNull(savedUniversite.getIdUniversite());
+
+    }
+    @Test
+    void testAddUniversiteFoyer() {
+        Universite universite = Universite.builder().nomUniversite("NomUni").build();
+        Foyer foyer = Foyer.builder().nomFoyer("Foyer Name").build();
+
+        Universite savedUniversite = universiteService.addUniversite(universite);
+        foyer.setUniversite(savedUniversite);
+
+        Foyer savedFoyer = foyerRepository.save(foyer);
+        savedUniversite.setFoyer(savedFoyer);
+
+        Universite updatedUniversite = universiteService.editUniversite(savedUniversite);
+
+        Assertions.assertNotNull(updatedUniversite.getIdUniversite());
+        Assertions.assertNotNull(updatedUniversite.getFoyer());
+        Assertions.assertEquals("Foyer Name", updatedUniversite.getFoyer().getNomFoyer());
 
     }
 }
