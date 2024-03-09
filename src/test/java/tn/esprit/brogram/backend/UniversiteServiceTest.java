@@ -17,6 +17,7 @@ import tn.esprit.brogram.backend.services.UniversiteService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -164,5 +165,37 @@ public class UniversiteServiceTest {
 
         Assertions.assertEquals(universite.getNomUniversite(), foundUniversite.getNomUniversite());
     }
+    @Test
+    void testUnideleteById() {
+        long id = 1L;
+        universiteService.unideleteById(id);
+        Optional<Universite> deletedUniversite = universiteRepository.findById(id);
+        Assertions.assertTrue(deletedUniversite.isEmpty());
+    }
+
+    @Test
+    void testUnidelete() {
+        Universite universite = new Universite();
+        universiteService.unidelete(universite);
+        Optional<Universite> deletedUniversite = universiteRepository.findById(universite.getIdUniversite());
+        Assertions.assertTrue(deletedUniversite.isEmpty());
+    }
+
+
+    @Test
+    void testDesaffecterFoyerAUniversite() {
+        Universite universite = Universite.builder().nomUniversite("Universite Name").build();
+        universite = universiteRepository.save(universite);
+
+        universiteService.desaffecterFoyerAUniversite(universite.getIdUniversite());
+
+        Universite updatedUniversite = universiteRepository.findById(universite.getIdUniversite()).orElse(null);
+
+        Assertions.assertNotNull(updatedUniversite);
+        Assertions.assertNull(updatedUniversite.getFoyer());
+    }
+
 
 }
+
+
