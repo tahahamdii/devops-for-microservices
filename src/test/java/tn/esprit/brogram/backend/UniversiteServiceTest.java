@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.brogram.backend.dao.entities.*;
 import tn.esprit.brogram.backend.dao.repositories.FoyerRepository;
+import tn.esprit.brogram.backend.dao.repositories.UniversiteRepository;
 import tn.esprit.brogram.backend.services.ChamberService;
 import tn.esprit.brogram.backend.services.UniversiteService;
 
@@ -26,6 +27,8 @@ public class UniversiteServiceTest {
     private UniversiteService universiteService;
     @Autowired
     private FoyerRepository foyerRepository;
+    @Autowired
+    private UniversiteRepository universiteRepository;
     @Test
     void testAddUniversiteNom(){
         Universite universite  = Universite.builder().nomUniversite("NomUni").build();
@@ -133,5 +136,19 @@ public class UniversiteServiceTest {
         for (Universite savedUniversite : savedUniversites) {
             Assertions.assertNotNull(savedUniversite.getIdUniversite());
         }
+    }
+
+    @Test
+    void testEditUniversite() {
+        Universite universite = Universite.builder().nomUniversite("Universite 1").build();
+
+        Universite savedUniversite = universiteService.editUniversite(universite);
+
+        Assertions.assertNotNull(savedUniversite);
+        Assertions.assertEquals(universite.getIdUniversite(), savedUniversite.getIdUniversite());
+
+        Universite updatedUniversite = universiteRepository.findById(savedUniversite.getIdUniversite()).orElse(null);
+        Assertions.assertNotNull(updatedUniversite);
+        Assertions.assertEquals(universite.getNomUniversite(), updatedUniversite.getNomUniversite());
     }
 }
