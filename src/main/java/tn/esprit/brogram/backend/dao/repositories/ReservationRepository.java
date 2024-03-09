@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation,String> {
     List<Reservation> findReservationByEtudiants_email(String email);
+    Reservation findByIdReservation(String ss);
 }
