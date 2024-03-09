@@ -17,9 +17,6 @@ public interface IUniversiteService {
     Universite updateStatus(long id, String status);
     Universite findUniversiteByEmail(String email);
     List<Universite> getAcceptedUniversites();
-
-
-
     Universite affecterFoyerAUniversite (long idFoyer, String nomUniversite) ;
     Universite desaffecterFoyerAUniversite(long idUniversite);
 

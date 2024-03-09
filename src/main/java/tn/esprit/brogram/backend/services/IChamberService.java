@@ -16,19 +16,13 @@ public interface IChamberService {
     Chamber findById(long id);
     void deleteByID(long id);
     void delete(Chamber c);
-
     List<Chamber> getChambresParNomBloc( String nomBloc) ;
     long nbChambreParTypeEtBloc(TypeChamber type, long idBloc) ;
     List<Chamber> getChambresNonReserveParNomFoyerEtTypeChambre( String nomFoyer,TypeChamber type) ;
-
     List<Chamber> getChambersByType(TypeChamber type);
-
     List<Chamber> getChambersByTypeAndBlocName(TypeChamber type, String blocName);
-
-
     List<Chamber> findChamberByBlocFoyerUniversiteNomUniversite(String nomUniversite);
     List<Chamber> findAvailableChamberByBlocFoyerUniversiteNomUniversite(String nomUniversite);
-
     void affecterBlocAChambre(long idChamber, long idBloc);
 
 }

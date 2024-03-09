@@ -23,6 +23,7 @@ public class ChamberService implements IChamberService{
     ChamberRepository chamberRepository;
     ReservationRepository reservationRepository ;
     BlocRepository blocRepository;
+
     @Override
     public Chamber addChamber(Chamber c) {
         return chamberRepository.save(c) ;
@@ -70,7 +71,6 @@ public class ChamberService implements IChamberService{
     @Override
     public void delete(Chamber c) {
         chamberRepository.delete(c);
-
     }
 
     @Override
@@ -148,4 +148,8 @@ public class ChamberService implements IChamberService{
         chambre.setBloc(bloc);
         chamberRepository.save(chambre);
     }
+
+
+
+
 }
