@@ -7,14 +7,13 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.brogram.backend.dao.entities.*;
 import tn.esprit.brogram.backend.dao.repositories.FoyerRepository;
 import tn.esprit.brogram.backend.dao.repositories.UniversiteRepository;
 import tn.esprit.brogram.backend.services.ChamberService;
 import tn.esprit.brogram.backend.services.UniversiteService;
-import org.springframework.test.context.TestPropertySource;
-
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,49 +36,49 @@ class UniversiteServiceTest {
     void testAddUniversiteNom(){
         Universite universite  = Universite.builder().nomUniversite("NomUni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
     void testAddUniversiteDescription(){
         Universite universite  = Universite.builder().description("Desp Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
     void testAddUniversiteAdresse(){
         Universite universite  = Universite.builder().adresse("Adresse Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
     void testAddUniversiteStatus(){
         Universite universite  = Universite.builder().statuts("Pending Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
     void testAddUniversiteEmail(){
         Universite universite  = Universite.builder().email("Emain Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
     void testAddUniversiteFirstName(){
         Universite universite  = Universite.builder().firstNameAgent("Agent first Name").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
     void testAddUniversiteLastName(){
         Universite universite  = Universite.builder().lastNameAgent("Agent last Name").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
 
     }
     @Test
@@ -95,7 +94,7 @@ class UniversiteServiceTest {
 
         Universite updatedUniversite = universiteService.editUniversite(savedUniversite);
 
-        Assertions.assertNotNull(updatedUniversite.getIdUniversite());
+        Assertions.assertNotNull(updatedUniversite.getNomUniversite());
         Assertions.assertNotNull(updatedUniversite.getFoyer());
         Assertions.assertEquals("Foyer Name", updatedUniversite.getFoyer().getNomFoyer());
 
@@ -107,7 +106,7 @@ class UniversiteServiceTest {
         universite.setCreatedAt(new Date());
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         Assertions.assertNotNull(savedUniversite.getCreatedAt());
 
     }
@@ -118,7 +117,7 @@ class UniversiteServiceTest {
         universite.setUpdatedAt(new Date());
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         Assertions.assertNotNull(savedUniversite.getUpdatedAt());
 
     }
@@ -138,7 +137,7 @@ class UniversiteServiceTest {
         Assertions.assertEquals(universites.size(), savedUniversites.size());
 
         for (Universite savedUniversite : savedUniversites) {
-            Assertions.assertNotNull(savedUniversite.getIdUniversite());
+            Assertions.assertNotNull(savedUniversite.getNomUniversite());
         }
     }
 
