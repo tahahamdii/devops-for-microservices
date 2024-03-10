@@ -195,6 +195,15 @@ public class UniversiteServiceTest {
         Assertions.assertNull(updatedUniversite.getFoyer());
     }
 
+    @Test
+    void testFindAll() {
+        Universite universite1 = Universite.builder().nomUniversite("Uni 1").statuts("Pending").description("Description 1").createdAt(new Date()).updatedAt(new Date()).build();
+        Universite universite2 = Universite.builder().nomUniversite("Uni 2").statuts("Pending").description("Description 2").createdAt(new Date()).updatedAt(new Date()).build();
+        universiteService.addUniversite(universite1);
+        universiteService.addUniversite(universite2);
+        List<Universite> universites = universiteService.unifindAll();
+        Assertions.assertFalse(universites.isEmpty());
+    }
 
 }
 

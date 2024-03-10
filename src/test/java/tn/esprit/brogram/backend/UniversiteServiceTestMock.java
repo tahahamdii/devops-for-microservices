@@ -10,17 +10,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-import tn.esprit.brogram.backend.dao.entities.Chamber;
-import tn.esprit.brogram.backend.dao.entities.TypeChamber;
 import tn.esprit.brogram.backend.dao.entities.Universite;
-import tn.esprit.brogram.backend.dao.repositories.ChamberRepository;
 import tn.esprit.brogram.backend.dao.repositories.UniversiteRepository;
-import tn.esprit.brogram.backend.services.ChamberService;
 import tn.esprit.brogram.backend.services.UniversiteService;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,7 +27,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class UniversiteServiceTestMock {
+class UniversiteServiceTestMock {
 
     @InjectMocks
     private UniversiteService universiteService ;
@@ -130,14 +129,14 @@ public class UniversiteServiceTestMock {
     }
 
     @Test
-    public void testUnifindAll() {
+     void testUnifindAll() {
         List<Universite> universities = universiteService.unifindAll();
         Assertions.assertNotNull(universities);
 
     }
 
     @Test
-    public void testUnifindById() {
+     void testUnifindById() {
         long id = 1L;
         Universite university = universiteService.unifindById(id);
         Assertions.assertNotNull(university);
@@ -145,19 +144,50 @@ public class UniversiteServiceTestMock {
     }
 
     @Test
-    public void testUnideleteById() {
+     void testUnideleteById() {
         long id = 1L;
         universiteService.unideleteById(id);
 
     }
 
     @Test
-    public void testUnidelete() {
-        Universite university = new Universite();
-        universiteService.unidelete(university);
+    public void deleteUni() {
+        Universite universite = Universite.builder().nomUniversite("Uni a").statuts("Pending").description("this is uni").build();
+        universiteService.unidelete(universite);
+        Mockito.verify(universiteRepository).delete(universite);
+    }
+
+
+
+
+        @Test
+        void testFindById() {
+            long id = 1;
+            Universite expectedUniversite = Universite.builder().idUniversite(id).nomUniversite("A").description("Description 1").statuts("true").build();
+
+            when(universiteRepository.findById(id)).thenReturn(Optional.of(expectedUniversite));
+
+            Universite actualUniversite = universiteService.unifindById(id);
+
+            assertNotNull(actualUniversite);
+            assertEquals(expectedUniversite.getIdUniversite(), actualUniversite.getIdUniversite());
+            assertEquals(expectedUniversite.getNomUniversite(), actualUniversite.getNomUniversite());
+            assertEquals(expectedUniversite.getDescription(), actualUniversite.getDescription());
+            assertEquals(expectedUniversite.getStatuts(), actualUniversite.getStatuts());
+
+            verify(universiteRepository).findById(id);
+        }
+
+        @Test
+        void testDeleteByID() {
+            long idToDelete = 1;
+
+            universiteService.unideleteById(idToDelete);
+
+            verify(universiteRepository).deleteById(idToDelete);
+        }
 
     }
-}
 
 
 
