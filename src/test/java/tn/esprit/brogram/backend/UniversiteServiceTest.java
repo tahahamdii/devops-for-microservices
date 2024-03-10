@@ -22,7 +22,8 @@ import java.util.Optional;
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class UniversiteServiceTest {
+@TestPropertySource("classpath:application-test.properties")
+class UniversiteServiceTest {
 
     @Autowired
     private UniversiteService universiteService;
