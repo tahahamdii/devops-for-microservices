@@ -43,42 +43,43 @@ class UniversiteServiceTest {
     void testAddUniversiteDescription(){
         Universite universite  = Universite.builder().description("Desp Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
+        Assertions.assertNotNull(savedUniversite.getDescription());
 
     }
+
     @Test
     void testAddUniversiteAdresse(){
         Universite universite  = Universite.builder().adresse("Adresse Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
-
+        Assertions.assertNotNull(savedUniversite.getAdresse());
     }
+
     @Test
     void testAddUniversiteStatus(){
         Universite universite  = Universite.builder().statuts("Pending Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
-
+        Assertions.assertNotNull(savedUniversite.getStatuts());
     }
+
     @Test
     void testAddUniversiteEmail(){
         Universite universite  = Universite.builder().email("Emain Uni").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
+        Assertions.assertNotNull(savedUniversite.getEmail());
 
     }
     @Test
     void testAddUniversiteFirstName(){
         Universite universite  = Universite.builder().firstNameAgent("Agent first Name").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
+        Assertions.assertNotNull(savedUniversite.getFirstNameAgent());
 
     }
     @Test
     void testAddUniversiteLastName(){
         Universite universite  = Universite.builder().lastNameAgent("Agent last Name").build();
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
+        Assertions.assertNotNull(savedUniversite.getLastNameAgent());
 
     }
     @Test
