@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 class UniversiteServiceTestMock {
 
     @InjectMocks
@@ -151,7 +152,7 @@ class UniversiteServiceTestMock {
     }
 
     @Test
-    public void deleteUni() {
+    void deleteUni() {
         Universite universite = Universite.builder().nomUniversite("Uni a").statuts("Pending").description("this is uni").build();
         universiteService.unidelete(universite);
         Mockito.verify(universiteRepository).delete(universite);
