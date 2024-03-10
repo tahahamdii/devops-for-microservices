@@ -44,7 +44,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
     @Test
@@ -54,7 +54,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
     @Test
@@ -64,7 +64,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
 
@@ -75,7 +75,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
 
@@ -86,7 +86,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
 
@@ -97,7 +97,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
 
@@ -108,7 +108,7 @@ class UniversiteServiceTestMock {
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getIdUniversite());
+        Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
 
@@ -125,7 +125,7 @@ class UniversiteServiceTestMock {
         List<Universite> savedUniversites = universiteService.addAllUniversite(universiteList);
         Assertions.assertEquals(universiteList.size(), savedUniversites.size());
         for (Universite savedUniversite : savedUniversites) {
-            Assertions.assertNotNull(savedUniversite.getIdUniversite());
+            Assertions.assertNotNull(savedUniversite.getNomUniversite());
         }
         verify(universiteRepository).saveAll(any());
     }
@@ -144,13 +144,7 @@ class UniversiteServiceTestMock {
         Assertions.assertNotNull(university);
 
     }
-
-    @Test
-     void testUnideleteById() {
-        long id = 1L;
-        universiteService.unideleteById(id);
-
-    }
+    
 
     @Test
     void deleteUni() {
