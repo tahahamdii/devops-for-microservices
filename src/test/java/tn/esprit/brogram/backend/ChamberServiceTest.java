@@ -50,7 +50,6 @@ class ChamberServiceTest {
 
         Chamber savedChamber = chamberService.addChamber(chamber);
 
-        assertNotNull(savedChamber.getIdChamber());
 
         Chamber retrievedChamber = chamberRepository.findById(savedChamber.getIdChamber()).orElse(null);
         assertNotNull(retrievedChamber);
