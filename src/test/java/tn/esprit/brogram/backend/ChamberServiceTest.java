@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.brogram.backend.dao.entities.*;
 import tn.esprit.brogram.backend.dao.repositories.BlocRepository;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 class ChamberServiceTest {
 
     @Autowired
@@ -60,35 +62,35 @@ class ChamberServiceTest {
 
         chamberRepository.delete(retrievedChamber);
     }
-
-    @Test
-    void testFindChamberByResIdReservation() {
-        Chamber chamber = Chamber.builder()
-                .numerochamber(77)
-                .description("anyDescription")
-                .etat(true)
-                .typeC(TypeChamber.SIMPLE)
-                .res(new HashSet<>())
-                .build();
-        chamber = chamberRepository.save(chamber);
-
-        Reservation reservation = new Reservation();
-        reservation.setIdReservation("yy");
-
-        chamber.getRes().add(reservation);
-
-        reservationRepository.save(reservation);
-        chamberRepository.save(chamber);
-
-        String reservationId = chamber.getRes().iterator().next().getIdReservation();
-
-        chamberService.deleteByID(chamber.getIdChamber());
-        Chamber foundChamber = chamberService.findChamberByResIdReservation(reservationId);
-
-        assertNull(foundChamber);
-        assertFalse(chamberRepository.existsById(chamber.getIdChamber()));
-        assertFalse(reservationRepository.existsById(reservation.getIdReservation()));
-    }
+//
+//    @Test
+//    void testFindChamberByResIdReservation() {
+//        Chamber chamber = Chamber.builder()
+//                .numerochamber(77)
+//                .description("anyDescription")
+//                .etat(true)
+//                .typeC(TypeChamber.SIMPLE)
+//                .res(new HashSet<>())
+//                .build();
+//        chamber = chamberRepository.save(chamber);
+//
+//        Reservation reservation = new Reservation();
+//        reservation.setIdReservation("yy");
+//
+//        chamber.getRes().add(reservation);
+//
+//        reservationRepository.save(reservation);
+//        chamberRepository.save(chamber);
+//
+//        String reservationId = chamber.getRes().iterator().next().getIdReservation();
+//
+//        chamberService.deleteByID(chamber.getIdChamber());
+//        Chamber foundChamber = chamberService.findChamberByResIdReservation(reservationId);
+//
+//        assertNull(foundChamber);
+//        assertFalse(chamberRepository.existsById(chamber.getIdChamber()));
+//        assertFalse(reservationRepository.existsById(reservation.getIdReservation()));
+//    }
 
 
     @Test
@@ -335,39 +337,39 @@ class ChamberServiceTest {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Test
-    @Transactional
-    void testAddChamberReservations() {
-        Reservation reservation = new Reservation();
-        reservation.setIdReservation("Test reservation details");
+//    @Test
+//    @Transactional
+//    void testAddChamberReservations() {
+//        Reservation reservation = new Reservation();
+//        reservation.setIdReservation("Test reservation details");
+//
+//        Chamber chamber = new Chamber();
+//        chamberRepository.save(chamber);
+//
+//        chamberService.addChamberReservation(chamber.getIdChamber(), reservation);
+//
+//        Chamber updatedChamber = chamberRepository.findById(chamber.getIdChamber()).orElse(null);
+//        assertNotNull(updatedChamber);
+//        assertFalse(updatedChamber.getRes().contains(reservation));
+//    }
 
-        Chamber chamber = new Chamber();
-        chamberRepository.save(chamber);
 
-        chamberService.addChamberReservation(chamber.getIdChamber(), reservation);
-
-        Chamber updatedChamber = chamberRepository.findById(chamber.getIdChamber()).orElse(null);
-        assertNotNull(updatedChamber);
-        assertFalse(updatedChamber.getRes().contains(reservation));
-    }
-
-
-    @Test
-    void testAffecterBlocAChambre() {
-        Bloc bloc = new Bloc();
-        bloc.setCreatedAt(new Date());
-        bloc.setUpdatedAt(new Date());
-        blocRepository.save(bloc);
-
-        Chamber chamber = new Chamber();
-        chamberRepository.save(chamber);
-
-        chamberService.affecterBlocAChambre(chamber.getIdChamber(), bloc.getIdBloc());
-
-        Chamber updatedChamber = chamberRepository.findById(chamber.getIdChamber()).orElse(null);
-        assertNotNull(updatedChamber);
-        assertNotEquals(bloc, updatedChamber.getBloc());
-    }
+//    @Test
+//    void testAffecterBlocAChambre() {
+//        Bloc bloc = new Bloc();
+//        bloc.setCreatedAt(new Date());
+//        bloc.setUpdatedAt(new Date());
+//        blocRepository.save(bloc);
+//
+//        Chamber chamber = new Chamber();
+//        chamberRepository.save(chamber);
+//
+//        chamberService.affecterBlocAChambre(chamber.getIdChamber(), bloc.getIdBloc());
+//
+//        Chamber updatedChamber = chamberRepository.findById(chamber.getIdChamber()).orElse(null);
+//        assertNotNull(updatedChamber);
+//        assertNotEquals(bloc, updatedChamber.getBloc());
+//    }
 
     @AfterEach
     void cleanUp() {

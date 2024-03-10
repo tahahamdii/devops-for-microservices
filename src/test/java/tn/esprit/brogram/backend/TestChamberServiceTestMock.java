@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import tn.esprit.brogram.backend.dao.entities.Bloc;
 import tn.esprit.brogram.backend.dao.entities.Chamber;
 import tn.esprit.brogram.backend.dao.entities.Reservation;
@@ -29,6 +30,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 class TestChamberServiceTestMock {
 
     @InjectMocks
