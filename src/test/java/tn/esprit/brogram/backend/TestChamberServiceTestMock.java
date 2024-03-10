@@ -53,7 +53,7 @@ class TestChamberServiceTestMock {
         when(chamberRepository.save(any(Chamber.class))).thenReturn(chamber);
 
         Chamber savedChamber = chamberService.addChamber(chamber);
-        assertNotNull(savedChamber.getIdChamber());
+        assertNotNull(savedChamber.getTypeC());
         assertNotNull(savedChamber.getDescription());
         verify(chamberRepository).save(any(Chamber.class));
 
