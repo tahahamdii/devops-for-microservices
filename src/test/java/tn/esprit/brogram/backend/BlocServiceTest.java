@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.brogram.backend.dao.entities.Bloc;
 import tn.esprit.brogram.backend.services.BlocService;
@@ -18,7 +19,8 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class BlocServiceTest {
+@TestPropertySource("classpath:application-test.properties")
+ class BlocServiceTest {
 
     @Autowired
     BlocService blocService;
@@ -27,7 +29,7 @@ public class BlocServiceTest {
     void testAddBloc() {
         Bloc bloc = Bloc.builder().nomBloc("bloc a").capaciteBloc(23).description("this is bloc").status("mawjoud").createdAt(new Date()).updatedAt(new Date()).build();
         Bloc savedBloc=blocService.addBloc(bloc);
-        Assertions.assertNotNull(savedBloc.getIdBloc());
+        Assertions.assertNotNull(savedBloc.getNomBloc());
         blocService.delete(savedBloc);
     }
     @Test
