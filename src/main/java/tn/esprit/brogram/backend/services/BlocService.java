@@ -39,7 +39,7 @@ public class BlocService implements IBlocService{
     @Override
     public Bloc findById(long id) {
 
-        return blocRepository.findById(id).orElse(Bloc.builder().idBloc(0).nomBloc("No Bloc Founded").build());
+        return blocRepository.findById(id).orElse(null);
 
     }
 
@@ -50,6 +50,7 @@ public class BlocService implements IBlocService{
 
     @Override
     public void delete(Bloc b) {
+
         blocRepository.delete(b);
     }
 
