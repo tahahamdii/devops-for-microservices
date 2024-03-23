@@ -27,7 +27,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().formLogin().disable()
                 .securityMatcher("/**")
-                .authorizeHttpRequests(Registry -> Registry
+                .authorizeHttpRequests(registry -> registry
 
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/UniversiteRestController/**").permitAll()

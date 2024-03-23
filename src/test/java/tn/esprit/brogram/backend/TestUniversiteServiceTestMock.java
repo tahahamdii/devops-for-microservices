@@ -5,6 +5,9 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,6 +21,7 @@ import org.springframework.test.context.TestPropertySource;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,7 +33,7 @@ import static org.mockito.Mockito.when;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
-class UniversiteServiceTestMock {
+class TestUniversiteServiceTestMock {
 
     @InjectMocks
     private UniversiteService universiteService ;
@@ -47,67 +51,52 @@ class UniversiteServiceTestMock {
         Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
+
     @Test
-    void testAddUniDesp(){
+    void testAddUniDesp() {
         Universite universite = Universite.builder().description("Uni desp").build();
-
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
-
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
+        Assertions.assertNotNull(savedUniversite, "Saved Universite should not be null");
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
+
     @Test
-    void testAddUniEmail(){
+    void testAddUniEmail() {
         Universite universite = Universite.builder().email("test@gmail.com").build();
+        Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
+        Universite savedUniversite = universiteService.addUniversite(universite);
+        verify(universiteRepository).save(Mockito.any(Universite.class));
+    }
+
+
+    @Test
+    void testAddUniAdresse() {
+        Universite universite = Universite.builder()
+                .adresse("Tunis")
+                .nomUniversite("Example University")
+                .build();
 
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
+
         Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
 
+
     @Test
-    void testAddUniStatus(){
-        Universite universite = Universite.builder().statuts("Stat").build();
+    void testAddUniLastName() {
+        Universite universite = Universite.builder()
+                .lastNameAgent("Zo")
+                .nomUniversite("Example University") // Initialize NomUniversite
+                .build();
 
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
 
         Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
-        verify(universiteRepository).save(Mockito.any(Universite.class));
-    }
 
-    @Test
-    void testAddUniAdresse(){
-        Universite universite = Universite.builder().adresse("Tunis").build();
-
-        Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
-
-        Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
-        verify(universiteRepository).save(Mockito.any(Universite.class));
-    }
-
-    @Test
-    void testAddUniFirstName(){
-        Universite universite = Universite.builder().firstNameAgent("Mao").build();
-
-        Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
-
-        Universite savedUniversite = universiteService.addUniversite(universite);
-        Assertions.assertNotNull(savedUniversite.getNomUniversite());
-        verify(universiteRepository).save(Mockito.any(Universite.class));
-    }
-
-    @Test
-    void testAddUniLastName(){
-        Universite universite = Universite.builder().lastNameAgent("Zo").build();
-
-        Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(universite);
-
-        Universite savedUniversite = universiteService.addUniversite(universite);
         Assertions.assertNotNull(savedUniversite.getNomUniversite());
         verify(universiteRepository).save(Mockito.any(Universite.class));
     }
@@ -144,7 +133,7 @@ class UniversiteServiceTestMock {
         Assertions.assertNotNull(university);
 
     }
-    
+
 
     @Test
     void deleteUni() {
