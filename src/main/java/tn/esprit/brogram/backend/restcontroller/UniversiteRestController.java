@@ -37,15 +37,15 @@ public class UniversiteRestController {
     ImageRepositroy imageRepositroy ;
     DocumentRepository documentRepository;
     @PostMapping(value = "addUniversite", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Universite addUniversite(@RequestBody Universite u){
+    public Universite addUniversite(@RequestBody Universite u){
         u.setStatuts("En_attente");
         return iUniversiteServices.addUniversite(u);
     }
 
 
     @GetMapping("findUniversiteByFoyer/{id}")
-    List<Universite> findUniversiteByFoyer(@PathVariable("id") long idFoyer){
-        return universiteRepository.findUniversiteByFoyer_IdFoyer(idFoyer);
+    public List<Universite> findUniversiteByFoyer(@PathVariable("id") long idFoyer){
+        return universiteRepository.findUniversiteByFoyerIdFoyer(idFoyer);
     }
 
 
@@ -88,11 +88,11 @@ public class UniversiteRestController {
 
 
     @GetMapping("findUniversiteByEmailAgent/{email}")
-    Universite findUniversiteByEmailAgent(@PathVariable("email") String email){
+    public Universite findUniversiteByEmailAgent(@PathVariable("email") String email){
         return iUniversiteServices.findUniversiteByEmail(email);
     }
     @GetMapping("findAll")
-    List<Universite> unifindAll(){
+    public List<Universite> unifindAll(){
 
         return iUniversiteServices.unifindAll();
 
@@ -100,20 +100,20 @@ public class UniversiteRestController {
 
 
     @PostMapping("addAllUniversites")
-    List<Universite> addAllUniversites(@RequestBody List<Universite> ls){
+    public List<Universite> addAllUniversites(@RequestBody List<Universite> ls){
         return iUniversiteServices.addAllUniversite(ls);
     }
     @PutMapping("editUniversite")
-    Universite editUniversite(@RequestBody Universite u){
+    public Universite editUniversite(@RequestBody Universite u){
         return iUniversiteServices.editUniversite(u);
     }
 
     @GetMapping("findById/{id}")
-    Universite unifindById(@PathVariable("id") long id){
+    public Universite unifindById(@PathVariable("id") long id){
         return iUniversiteServices.unifindById(id);
     }
     @DeleteMapping("deleteById/{id}")
-    void unideleteById(@PathVariable("id") long id){
+    public void unideleteById(@PathVariable("id") long id){
         iUniversiteServices.unideleteById(id);
     }
     @DeleteMapping("delete")
@@ -143,7 +143,7 @@ public class UniversiteRestController {
         }
     }
     @PutMapping("desaffecterUniversite/{idUnive}")
-    Universite descaffecterFoyer(@PathVariable("idUnive")long id){
+    public Universite descaffecterFoyer(@PathVariable("idUnive")long id){
         iUniversiteServices.desaffecterFoyerAUniversite(id);
         return iUniversiteServices.desaffecterFoyerAUniversite(id);
     }
@@ -156,7 +156,7 @@ public class UniversiteRestController {
     }
 
     @GetMapping("findByUniversiteNom/{name}")
-    Universite unifindByUniversiteNom(@PathVariable("name") String nomUniversite){
+    public Universite unifindByUniversiteNom(@PathVariable("name") String nomUniversite){
         return iUniversiteServices.unifindByNomUniv(nomUniversite);
     }
 

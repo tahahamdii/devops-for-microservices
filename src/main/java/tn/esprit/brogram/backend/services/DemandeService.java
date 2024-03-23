@@ -85,7 +85,7 @@ public class DemandeService implements IDemandeService{
     }
 
     private boolean hasValidReservation(Demande demande, User user) {
-        List<Reservation> reservationsValidated = reservationRepository.findReservationByEtudiants_email(user.getEmail());
+        List<Reservation> reservationsValidated = reservationRepository.findReservationByEtudiantsemail(user.getEmail());
 
         for (Reservation reservation : reservationsValidated) {
             boolean b = reservation.getEstValide();

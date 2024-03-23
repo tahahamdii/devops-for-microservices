@@ -64,7 +64,7 @@ public class BlocService implements IBlocService{
 
     @Override
     public Bloc findBlocByChamberIdChamber(long idChamber) {
-        return blocRepository.findBlocByChambers_IdChamber(idChamber);
+        return blocRepository.findBlocByChambersIdChamber(idChamber);
     }
 
     //by wiwi
@@ -76,7 +76,7 @@ public class BlocService implements IBlocService{
 
     @Override
     public List<Bloc> findBlocByFoyerIdFoyer(long idFoyer) {
-        return blocRepository.findBlocByFoyer_IdFoyer(idFoyer);
+        return blocRepository.findBlocByFoyerIdFoyer(idFoyer);
     }
 
 

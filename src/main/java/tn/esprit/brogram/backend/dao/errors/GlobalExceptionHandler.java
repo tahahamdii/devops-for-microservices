@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorObject> handlePokemonNotFoundException(UserNotFoundException ex, WebRequest request) {
 
-        ErrorObject errorObject = new ErrorObject();
+        var errorObject = new ErrorObject();
 
         errorObject.setStatusCode(HttpStatus.NOT_FOUND.value());
         errorObject.setMessage(ex.getMessage());
@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotEnabled.class)
     public ResponseEntity<ErrorObject> handleReviewNotFoundException(UserNotEnabled ex, WebRequest request) {
 
-        ErrorObject errorObject = new ErrorObject();
+        var errorObject = new ErrorObject();
 
         errorObject.setStatusCode(HttpStatus.UNAUTHORIZED.value());
         errorObject.setMessage(ex.getMessage());
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserExistsException.class)
     public ResponseEntity<ErrorObject> handleUserExistsException(UserExistsException ex, WebRequest request) {
 
-        ErrorObject errorObject = new ErrorObject();
+        var errorObject = new ErrorObject();
 
         errorObject.setStatusCode(HttpStatus.BAD_REQUEST.value());
         errorObject.setMessage(ex.getMessage());
@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidCredentials.class)
     public ResponseEntity<ErrorObject> handleInvalidCredentials(InvalidCredentials ex, WebRequest request) {
 
-        ErrorObject errorObject = new ErrorObject();
+        var errorObject = new ErrorObject();
 
         errorObject.setStatusCode(HttpStatus.FORBIDDEN.value());
         errorObject.setMessage(ex.getMessage());
@@ -62,7 +62,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PasswordDoesNotMatchTheOld.class)
     public ResponseEntity<ErrorObject> handlePasswordDoesNotMatchTheOld(PasswordDoesNotMatchTheOld ex, WebRequest request) {
 
-        ErrorObject errorObject = new ErrorObject();
+        var errorObject = new ErrorObject();
 
         errorObject.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
         errorObject.setMessage(ex.getMessage());
@@ -74,7 +74,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorObject> handleCustomException(CustomException ex, WebRequest request) {
 
-        ErrorObject errorObject = new ErrorObject();
+        var errorObject = new ErrorObject();
 
         errorObject.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
         errorObject.setMessage(ex.getMessage());

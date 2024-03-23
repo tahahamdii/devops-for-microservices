@@ -18,7 +18,6 @@ public interface UniversiteRepository extends JpaRepository<Universite,Long> {
     Universite findUniversiteByNomUniversiteAndEmail(String name, String email);
 
 
-    List<Universite> findUniversiteByFoyer_IdFoyer(long idFoyer);
-    Universite findUniversiteByFoyerIdFoyer(long idFoyer);
+    List<Universite> findUniversiteByFoyerIdFoyer(long idFoyer);
 
 }

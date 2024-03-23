@@ -10,9 +10,9 @@ public interface BlocRepository extends JpaRepository<Bloc,Long> {
 
     Bloc findByIdBloc(Long b);
     Bloc getBlocByNomBloc(String nomBlog);
-    Bloc findBlocByChambers_IdChamber(long idChamber);
+    Bloc findBlocByChambersIdChamber(long idChamber);
     boolean existsByNomBloc(String nomBloc);
-    List<Bloc> findBlocByFoyer_IdFoyer(long idFoyer);
+    List<Bloc> findBlocByFoyerIdFoyer(long idFoyer);
     @Query("SELECT c.typeC, COUNT(c) FROM Bloc b JOIN b.chambers c WHERE b.idBloc = :blocId GROUP BY c.typeC")
     List<Object[]> countChambersByType(long blocId);
 

@@ -30,17 +30,17 @@ public class UserRestController {
     private final UserRepository userRepo;
 
     @GetMapping("findUserByEmail/{email}")
-    User getUserByEmail(@PathVariable("email") String email){
+    public User getUserByEmail(@PathVariable("email") String email){
         return iUserService.findByEmail(email);
     }
 
     @GetMapping("findEtudiantByEcoleAndRole/{universite}/{role}")
-    List<User> findEtudiantByEcoleAndRole(@PathVariable("universite") String universite , @PathVariable("role") Roles role){
+    public List<User> findEtudiantByEcoleAndRole(@PathVariable("universite") String universite , @PathVariable("role") Roles role){
         return iUserService.findEtudiantByEcoleAndRole(universite,role);
     }
 
     @PutMapping("updateUser")
-    User editUser( @RequestBody User user){
+    public User editUser( @RequestBody User user){
         return iUserService.updateUser(user);
     }
 
@@ -66,12 +66,12 @@ public class UserRestController {
     }
 
     @GetMapping("/findUsers")
-    List<User> getUsers(){
+    public List<User> getUsers(){
         return iUserService.getEtudiantUsers();
     }
 
     @PutMapping("toggelUser")
-    User enableOrDisable( @RequestParam String email){
+    public User enableOrDisable( @RequestParam String email){
         return iUserService.enableOrDisable(email);
     }
 

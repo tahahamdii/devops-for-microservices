@@ -81,7 +81,7 @@ public class FoyerRestController {
 
     @GetMapping("findFoyerByUniversite/{id}")
     public List<Foyer> findFoyerByUniversite(@PathVariable("id") long idUniversite) {
-        return foyerRepository.findFoyerByUniversite_IdUniversite(idUniversite);
+        return foyerRepository.findFoyerByUniversiteIdUniversite(idUniversite);
     }
 
     @PutMapping("updateEtatById/{idFoyer}")
