@@ -15,6 +15,7 @@ import tn.esprit.brogram.backend.dao.errors.CustomException;
 import tn.esprit.brogram.backend.dao.repositories.UserRepository;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.Set;
 @Service
 public class UserService implements IUserService {
     private final UserRepository userRepo;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
@@ -70,7 +71,7 @@ public class UserService implements IUserService {
             for (Reservation reservation : reservations){
                 boolean b = reservation.getEstValide();
 
-                if(b && reservation.getAnneeReservation().getYear()==new Date().getYear()){
+                if (b && reservation.getAnneeReservation().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear() == LocalDate.now().getYear()) {
                     test = true ;
                 }
             }

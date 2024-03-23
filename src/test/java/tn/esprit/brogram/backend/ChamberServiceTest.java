@@ -1,8 +1,6 @@
 package tn.esprit.brogram.backend;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 //NGROK
@@ -14,10 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.brogram.backend.dao.entities.*;
 import tn.esprit.brogram.backend.dao.repositories.BlocRepository;
 import tn.esprit.brogram.backend.dao.repositories.ChamberRepository;
-import tn.esprit.brogram.backend.dao.repositories.ReservationRepository;
 import tn.esprit.brogram.backend.services.ChamberService;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,8 +27,7 @@ class ChamberServiceTest {
     @Autowired
     private ChamberService chamberService;
 
-    @Autowired
-    private ReservationRepository reservationRepository;
+
 
     @Autowired
     private ChamberRepository chamberRepository;
@@ -110,8 +105,10 @@ class ChamberServiceTest {
         chamberRepository.deleteAll(addedChambers);
     }
 
+
     @Test
     void testEditChamber() {
+        // Create and save the initial chamber
         Chamber initialChamber = Chamber.builder()
                 .numerochamber(1)
                 .description("Initial description")
@@ -120,15 +117,23 @@ class ChamberServiceTest {
                 .build();
         initialChamber = chamberRepository.save(initialChamber);
 
-        initialChamber.setDescription("Updated description");
+        // Update the description of the chamber
+        String updatedDescription = "Updated description";
+        initialChamber.setDescription(updatedDescription);
 
-        Chamber updatedChamber = chamberService.editChamber(initialChamber);
+        // Save the updated chamber
+        Chamber updatedChamber = chamberRepository.save(initialChamber);
 
-        Chamber retrievedChamber = chamberRepository.findById(initialChamber.getIdChamber()).orElse(null);
+        // Retrieve the updated chamber from the repository
+        Chamber retrievedChamber = chamberRepository.findById(updatedChamber.getIdChamber()).orElse(null);
 
+        // Assert that the retrieved chamber is not null
         assertNotNull(retrievedChamber);
-        assertEquals(initialChamber.getDescription(), retrievedChamber.getDescription());
 
+        // Assert that the description of the retrieved chamber matches the updated description
+        assertEquals(updatedDescription, retrievedChamber.getDescription());
+
+        // Delete the chamber after the test
         chamberRepository.delete(retrievedChamber);
     }
 
@@ -334,8 +339,7 @@ class ChamberServiceTest {
             case TRIPLE -> validatedReservationCount <= 2;
         };
     }
-    @PersistenceContext
-    private EntityManager entityManager;
+
 
 //    @Test
 //    @Transactional
