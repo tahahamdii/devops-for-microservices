@@ -80,11 +80,11 @@ public class ChamberService implements IChamberService{
     }
     @Override
     public long nbChambreParTypeEtBloc(TypeChamber type, long idBloc) {
-        return chamberRepository.countChamberByTypeCAndBloc_IdBloc(type , idBloc);
+        return chamberRepository.countChamberByTypeCAndBlocIdBloc(type , idBloc);
     }
     @Override
     public List<Chamber> getChambresNonReserveParNomFoyerEtTypeChambre(String nomFoyer, TypeChamber type) {
-        return chamberRepository.findChamberByBlocFoyerNomFoyerAndTypeCAndRes_Empty(nomFoyer,type);
+        return chamberRepository.findChamberByBlocFoyerNomFoyerAndTypeCAndResEmpty(nomFoyer,type);
     }
 
     @Override

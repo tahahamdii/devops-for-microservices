@@ -226,7 +226,7 @@ class TestChamberServiceTestMock {
         long idBloc = 1L;
         int expectedCount = 5;
 
-        when(chamberRepository.countChamberByTypeCAndBloc_IdBloc(type, idBloc)).thenReturn(expectedCount);
+        when(chamberRepository.countChamberByTypeCAndBlocIdBloc(type, idBloc)).thenReturn(expectedCount);
 
         long actualCount = chamberService.nbChambreParTypeEtBloc(type, idBloc);
 
@@ -239,7 +239,7 @@ class TestChamberServiceTestMock {
         TypeChamber type = TypeChamber.SIMPLE;
         List<Chamber> expectedChambers = new ArrayList<>();
 
-        when(chamberRepository.findChamberByBlocFoyerNomFoyerAndTypeCAndRes_Empty(nomFoyer, type))
+        when(chamberRepository.findChamberByBlocFoyerNomFoyerAndTypeCAndResEmpty(nomFoyer, type))
                 .thenReturn(expectedChambers);
 
         List<Chamber> actualChambers = chamberService.getChambresNonReserveParNomFoyerEtTypeChambre(nomFoyer, type);

@@ -29,24 +29,24 @@ public class ChamberRestController {
     ImageRepository imageRepositroy ;
 
     @GetMapping("findChambersbyUniversite/{nom}")
-    List<Chamber> findChambersbyUniversite(@PathVariable("nom") String nom){
+    public List<Chamber> findChambersbyUniversite(@PathVariable("nom") String nom){
         return iChamberService.findChamberByBlocFoyerUniversiteNomUniversite(nom);
     }
     @GetMapping("findAvailableChambersbyUniversite/{nom}")
-    List<Chamber> findAvailableChambersbyUniversite(@PathVariable("nom") String nom){
+    public List<Chamber> findAvailableChambersbyUniversite(@PathVariable("nom") String nom){
         return iChamberService.findAvailableChamberByBlocFoyerUniversiteNomUniversite(nom);
     }
     @GetMapping("findAllChambers")
-    List<Chamber> findAll(){
+    public List<Chamber> findAll(){
         return iChamberService.findAll();
     }
 
     @GetMapping("findChamberByID/{id}")
-    Chamber findChamberByID(@PathVariable("id") long id){
+    public Chamber findChamberByID(@PathVariable("id") long id){
         return iChamberService.findById(id);
     }
     @PostMapping("addChamber")
-    Chamber addChamber(@RequestBody Chamber c){
+    public Chamber addChamber(@RequestBody Chamber c){
         c.setCreatedAt(new Date());
         c.setEtat(true);
         return iChamberService.addChamber(c);
@@ -54,45 +54,45 @@ public class ChamberRestController {
     }
 
     @PutMapping("putChamberReservation/{id}")
-    Chamber putChamberReservation(@PathVariable("id") long idCh , @RequestBody Reservation r){
+    public Chamber putChamberReservation(@PathVariable("id") long idCh , @RequestBody Reservation r){
         return iChamberService.addChamberReservation(idCh , r);
     }
 
     @GetMapping("findChamberByReservationID/{id}")
-    Chamber getChamberByReservation(@PathVariable("id") String idReservation){
+    public Chamber getChamberByReservation(@PathVariable("id") String idReservation){
         return iChamberService.findChamberByResIdReservation(idReservation) ;
     }
 
     @PostMapping("/addAllChambers")
-    List<Chamber> addAllChambers(@RequestBody List<Chamber> ls){
+    public List<Chamber> addAllChambers(@RequestBody List<Chamber> ls){
         return iChamberService.addAllChambers(ls);
     }
     @PutMapping("updateChamber")
-    Chamber editChamber(@RequestBody Chamber c){
+    public Chamber editChamber(@RequestBody Chamber c){
         c.setUpdatedAt(new Date());
         return iChamberService.editChamber(c);
     }
 
     @DeleteMapping("deleteChamberById/{id}")
-    void deleteChamberByID(@PathVariable("id") long id){
+    public void deleteChamberByID(@PathVariable("id") long id){
 
         iChamberService.deleteByID(id);
     }
 
     @DeleteMapping("deleteChamber")
-    void deleteChmber(@RequestBody Chamber c){
+    public void deleteChmber(@RequestBody Chamber c){
         iChamberService.delete(c);
     }
     @GetMapping("getChamberList/{nomBloc}")
-    List<Chamber> getChambresParNomBloc(@PathVariable("nomBloc") String nomBloc){
+    public List<Chamber> getChambresParNomBloc(@PathVariable("nomBloc") String nomBloc){
         return iChamberService.getChambresParNomBloc(nomBloc);
     }
     @GetMapping("nbChambreParTypeEtBloc/{type}/{idBloc}")
-    long nbChambreParTypeEtBloc(@PathVariable("type") TypeChamber type , @PathVariable("idBloc") long idBloc){
+    public long nbChambreParTypeEtBloc(@PathVariable("type") TypeChamber type , @PathVariable("idBloc") long idBloc){
         return iChamberService.nbChambreParTypeEtBloc(type , idBloc);
     }
     @GetMapping("chamberListNonReserver/{type}/{nomFoyer}")
-    List<Chamber> getChambresNonReserveParNomFoyerEtTypeChambre(@PathVariable("type") TypeChamber type, @PathVariable("nomFoyer") String nomFoyer) {
+    public List<Chamber> getChambresNonReserveParNomFoyerEtTypeChambre(@PathVariable("type") TypeChamber type, @PathVariable("nomFoyer") String nomFoyer) {
         return iChamberService.getChambresNonReserveParNomFoyerEtTypeChambre(nomFoyer, type);
     }
     @PostMapping("uploadImg/{idChamber}")

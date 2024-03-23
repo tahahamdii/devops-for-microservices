@@ -179,7 +179,7 @@ import static org.mockito.Mockito.*;
    }
    @Test
     void testFindBlocByChamberIdChamberNonExistingID() {
-      when(blocRepository.findBlocByChambers_IdChamber(9999L)).thenReturn(null);
+      when(blocRepository.findBlocByChambersIdChamber(9999L)).thenReturn(null);
       Bloc foundBloc = blocService.findBlocByChamberIdChamber(9999L);
       assertNull(foundBloc, "Bloc should be null for non-existing Chamber ID");
    }
