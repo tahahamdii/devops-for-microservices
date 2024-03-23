@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk
 
-COPY target/Backend-0.0.4-SNAPSHOT.jar .
+COPY target/Backend-0.0.5-SNAPSHOT.jar .
 
 EXPOSE 8088
 
