@@ -6,6 +6,7 @@ import tn.esprit.brogram.backend.dao.entities.Chamber;
 import tn.esprit.brogram.backend.dao.repositories.BlocRepository;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class BlocService implements IBlocService{
     public Bloc editBloc(Bloc b) {
         Bloc bloc = blocRepository.findByIdBloc(b.getIdBloc());
         b.setFoyer(bloc.getFoyer());
+        b.setUpdatedAt(new Date());
         return blocRepository.save(b);
     }
 
