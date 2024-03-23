@@ -83,7 +83,7 @@ public class ReservationService implements IReservationService {
 
     @Override
     public List<Reservation> findReservationByEmailEtudiant(String email) {
-        return reservationRepository.findReservationByEtudiantsemail(email);
+        return reservationRepository.findReservationByEtudiants_email(email);
     }
 
     @Override
