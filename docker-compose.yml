@@ -11,7 +11,7 @@ services:
       - 3306:3306
 
   springboot-docker-container:
-    image: malektroudi1/backend:latest
+    image: backend
     container_name: springboot-backend
     ports:
       - 8088:8088
