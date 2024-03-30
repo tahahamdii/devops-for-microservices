@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  mysql-standalone:
+    image: mysql:latest
+    container_name: mysql-standalone
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=TestDocker
+    ports:
+      - 3306:3306
+
+  springboot-docker-container:
+    image: backend-image
+    container_name: backend-image
+    ports:
+      - 8088:8088
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://root:root@mysql-standalone:3306/TestDocker
+      - MYSQL_HOST=mysql-standalone
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+      - MYSQL_PORT=3306
+    depends_on:
+      - mysql-standalone
