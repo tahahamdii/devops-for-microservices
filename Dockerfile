@@ -1,8 +1,8 @@
 FROM openjdk:17-jdk
 
-COPY target/Backend-1.0.7-SNAPSHOT.jar .
+COPY target/4TWIN6-G5-Wizards-1.0.7-SNAPSHOT.jar .
 
 EXPOSE 8088
 
-ENTRYPOINT ["java", "-jar", "Backend-1.0.7-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "4TWIN6-G5-Wizards-1.0.7-SNAPSHOT.jar"]
 
