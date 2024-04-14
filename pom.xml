@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tn.esprit.brogram</groupId>
-    <artifactId>Backend</artifactId>
+    <artifactId>4TWIN6-G5-Wizards</artifactId>
     <version>1.0.7-SNAPSHOT</version>
     <name>Backend</name>
     <description>Backend</description>
